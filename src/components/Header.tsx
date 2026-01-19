@@ -23,7 +23,7 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center z-50">
             <Image 
-              src="/images/logo.png" 
+              src="/images/Logo.png" 
               alt="OnlineAds360" 
               width={180} 
               height={60}
