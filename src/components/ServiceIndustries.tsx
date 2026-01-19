@@ -1,4 +1,7 @@
+'use client';
+
 import { Heart, Home, Briefcase, Wrench, ShoppingBag, Users } from 'lucide-react';
+import { motion, Variants } from 'framer-motion';
 
 const industries = [
   {
@@ -33,18 +36,55 @@ const industries = [
   }
 ];
 
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut"
+    }
+  }
+};
+
 export default function ServiceIndustries() {
   return (
-    <section className="py-24 bg-white">
+    <section className="py-24 bg-white overflow-hidden">
       <div className="container mx-auto px-4 lg:px-12">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center max-w-3xl mx-auto mb-16"
+        >
           <h2 className="text-[28px] md:text-[36px] font-bold text-[#111827] mb-4">Industries We Serve</h2>
           <p className="text-[16px] md:text-[18px] text-[#4B5563]">Tailored solutions for your specific industry needs</p>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
           {industries.map((industry, index) => (
-            <div key={index} className="p-8 rounded-2xl border border-gray-100 bg-white hover:bg-blue-50 transition-colors group">
+            <motion.div 
+              key={index} 
+              variants={itemVariants}
+              className="p-8 rounded-2xl border border-gray-100 bg-white hover:bg-blue-50 transition-colors group"
+            >
               <div className="w-12 h-12 rounded-xl bg-blue-50 text-[#2563EB] flex items-center justify-center mb-6 group-hover:bg-white transition-colors">
                 <industry.icon className="w-6 h-6" />
               </div>
@@ -52,9 +92,9 @@ export default function ServiceIndustries() {
               <p className="text-[14px] text-[#4B5563] leading-relaxed">
                 {industry.description}
               </p>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

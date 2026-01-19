@@ -1,33 +1,59 @@
 'use client';
 
 import Link from 'next/link';
-import { Star, Check, X, Facebook } from 'lucide-react';
+import { Star, Check } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 export default function CTASection() {
   return (
-    <section className="bg-white py-24">
+    <section className="bg-white py-24 overflow-hidden">
       <div className="max-w-[896px] mx-auto px-5 lg:px-20 text-center">
         {/* Headline */}
-        <h2 className="text-[32px] md:text-[48px] leading-[40px] md:leading-[60px] font-semibold tracking-[-0.5px] text-[#1F2937] mb-12">
+        <motion.h2 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-[32px] md:text-[48px] leading-[40px] md:leading-[60px] font-semibold tracking-[-0.5px] text-[#1F2937] mb-12"
+        >
           Get everything you need to{' '}
           <span className="text-[#2563EB]">manage and grow</span> your business.
-        </h2>
+        </motion.h2>
 
         {/* CTA Button */}
-        <Link 
-          href="/contact"
-          className="inline-flex items-center justify-center w-[192.28px] h-[52px] bg-[#2563EB] text-white font-bold text-[18px] leading-[22px] tracking-[-0.5px] rounded-lg shadow-[0px_4px_6px_rgba(0,0,0,0.1),0px_10px_15px_rgba(0,0,0,0.1)] hover:bg-blue-700 transition-colors mb-6"
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
         >
-          Plans & Pricing
-        </Link>
+          <Link 
+            href="/contact"
+            className="inline-flex items-center justify-center w-[192.28px] h-[52px] bg-[#2563EB] text-white font-bold text-[18px] leading-[22px] tracking-[-0.5px] rounded-lg shadow-[0px_4px_6px_rgba(0,0,0,0.1),0px_10px_15px_rgba(0,0,0,0.1)] hover:bg-blue-700 transition-all hover:scale-105 mb-6"
+          >
+            Plans & Pricing
+          </Link>
+        </motion.div>
 
         {/* Free Trial Note */}
-        <p className="text-[16px] leading-[24px] font-bold tracking-[-0.5px] text-[#6B7280] mb-12">
+        <motion.p 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="text-[16px] leading-[24px] font-bold tracking-[-0.5px] text-[#6B7280] mb-12"
+        >
           Plus, get a free trial. No credit card required.
-        </p>
+        </motion.p>
 
         {/* Rating */}
-        <div className="flex items-center justify-center gap-3 mb-16">
+        <motion.div 
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.6 }}
+          className="flex items-center justify-center gap-3 mb-16"
+        >
           {/* Social Icons */}
           <div className="flex items-center gap-2">
             <div className="w-6 h-6 bg-[#2563EB] rounded flex items-center justify-center">
@@ -54,16 +80,22 @@ export default function CTASection() {
               (1,130)
             </span>
           </div>
-        </div>
+        </motion.div>
 
         {/* Trust Badges */}
-        <div className="flex items-center justify-center gap-8 opacity-50">
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0.8 }}
+          className="flex flex-wrap items-center justify-center gap-8 opacity-50"
+        >
           {['Capterra', 'GetApp', 'Software Advice', 'Top Rated'].map((badge, i) => (
             <span key={i} className="text-[18px] leading-[22px] font-bold tracking-[-0.5px] text-[#6B7280]">
               {badge}
             </span>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

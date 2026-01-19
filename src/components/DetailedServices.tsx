@@ -2,6 +2,29 @@
 
 import { Globe, ShoppingCart, BarChart3, Share2, Mail, Search, Check, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import { motion, Variants } from 'framer-motion';
+
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
+
+const cardVariants: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut"
+    }
+  }
+};
 
 const detailedServices = [
   {
@@ -106,10 +129,17 @@ export default function DetailedServices() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
           {detailedServices.map((service, index) => (
-            <div 
+            <motion.div 
               key={index} 
+              variants={cardVariants}
               className="group bg-white p-8 md:p-10 rounded-[32px] border border-gray-200 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] hover:border-blue-200 transition-all duration-500 flex flex-col relative overflow-hidden"
             >
               {/* Abstract Background Decoration */}
@@ -151,9 +181,9 @@ export default function DetailedServices() {
                   <ArrowRight className="w-4 h-4 transition-transform group-hover/link:translate-x-1" />
                 </Link>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

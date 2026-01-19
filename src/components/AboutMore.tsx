@@ -1,6 +1,29 @@
 'use client';
 
 import Image from 'next/image';
+import { motion, Variants } from 'framer-motion';
+
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2
+    }
+  }
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut"
+    }
+  }
+};
 
 export default function AboutMore() {
   const sections = [
@@ -22,21 +45,37 @@ export default function AboutMore() {
   ];
 
   return (
-    <section className="bg-white py-24 border-t border-gray-100">
+    <section className="bg-white py-24 border-t border-gray-100 overflow-hidden">
       <div className="max-w-[1280px] mx-auto px-5 lg:px-20">
-        <h2 className="text-[20px] font-medium text-[#717171] text-center mb-16 tracking-wide">
+        <motion.h2 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-[20px] font-medium text-[#717171] text-center mb-16 tracking-wide"
+        >
           More about Marketing 360®
-        </h2>
+        </motion.h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+        >
           {sections.map((item, index) => (
-            <div key={index} className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-shadow border border-gray-100">
-              <div className="relative h-48 w-full">
+            <motion.div 
+              key={index} 
+              variants={itemVariants}
+              className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 hover:-translate-y-1"
+            >
+              <div className="relative h-48 w-full overflow-hidden">
                 <Image
                   src={item.image}
                   alt={item.title}
                   fill
-                  className="object-cover"
+                  className="object-cover transition-transform duration-700 hover:scale-110"
                 />
               </div>
               <div className="p-8">
@@ -47,9 +86,9 @@ export default function AboutMore() {
                   {item.description}
                 </p>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

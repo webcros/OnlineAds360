@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 interface FeatureCardProps {
   category: string;
@@ -8,11 +9,20 @@ interface FeatureCardProps {
   description: string;
   imageSrc: string;
   imagePosition?: 'left' | 'right';
+  index: number;
 }
 
-const FeatureCard = ({ category, title, description, imageSrc, imagePosition = 'left' }: FeatureCardProps) => {
+const FeatureCard = ({ category, title, description, imageSrc, imagePosition = 'left', index }: FeatureCardProps) => {
+  const isEven = index % 2 === 0;
+
   const content = (
-    <div className="flex flex-col justify-center p-6 lg:p-10">
+    <motion.div 
+      initial={{ opacity: 0, x: isEven ? 50 : -50 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className="flex flex-col justify-center p-6 lg:p-10"
+    >
       <span className="text-[14px] font-bold tracking-[0.2px] text-[#103AB9] mb-3">
         {category}
       </span>
@@ -25,32 +35,38 @@ const FeatureCard = ({ category, title, description, imageSrc, imagePosition = '
       <div className="flex items-center gap-4">
         <Link 
           href="/services"
-          className="inline-flex items-center justify-center px-6 py-3 bg-[#103AB9] text-white font-bold text-[16px] tracking-[-0.5px] rounded-lg hover:bg-[#0d2f94] transition-colors"
+          className="inline-flex items-center justify-center px-6 py-3 bg-[#103AB9] text-white font-bold text-[16px] tracking-[-0.5px] rounded-lg hover:bg-[#0d2f94] transition-all hover:scale-105"
         >
           Learn More
         </Link>
         <Link 
           href="/contact"
-          className="text-[#4338CA] font-semibold text-[16px] tracking-[-0.5px] hover:underline"
+          className="text-[#4338CA] font-semibold text-[16px] tracking-[-0.5px] hover:underline transition-all hover:translate-x-1"
         >
           View Plans →
         </Link>
       </div>
-    </div>
+    </motion.div>
   );
 
   const image = (
-    <div className="flex items-center justify-center">
+    <motion.div 
+      initial={{ opacity: 0, scale: 0.9, x: isEven ? -50 : 50 }}
+      whileInView={{ opacity: 1, scale: 1, x: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className="flex items-center justify-center"
+    >
       <img 
         src={imageSrc} 
         alt={category} 
-        className="w-full h-auto max-h-[400px] object-contain"
+        className="w-full h-auto max-h-[400px] object-contain transition-transform duration-500 hover:scale-105"
       />
-    </div>
+    </motion.div>
   );
 
   return (
-    <div className="py-8">
+    <div className="py-8 overflow-hidden">
       <div className={`grid grid-cols-1 lg:grid-cols-2 gap-8 items-center`}>
         {imagePosition === 'left' ? (
           <>
@@ -160,14 +176,20 @@ export default function ToolsSection() {
     <section className="bg-[#F9FAFB] py-24">
       <div className="max-w-[1376px] mx-auto px-5 lg:px-8">
         {/* Section Title */}
-        <h2 className="text-3xl md:text-4xl font-black text-[#111827] text-center mb-16">
+        <motion.h2 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-3xl md:text-4xl font-black text-[#111827] text-center mb-16"
+        >
           Plus a full suite of tools to help you scale with ease....
-        </h2>
+        </motion.h2>
 
         {/* Features Grid */}
         <div className="space-y-8">
           {features.map((feature, index) => (
-            <FeatureCard key={index} {...feature} />
+            <FeatureCard key={index} {...feature} index={index} />
           ))}
         </div>
       </div>

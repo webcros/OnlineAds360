@@ -1,12 +1,19 @@
 'use client';
 
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 
 export default function AboutMission() {
   return (
-    <section className="bg-white py-24">
+    <section className="bg-white py-24 overflow-hidden">
       <div className="max-w-[1280px] mx-auto px-5 lg:px-20">
-        <div className="text-center mb-16">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
+        >
           <h2 className="text-[30px] md:text-[45px] leading-[1.26] font-bold text-[#24282F] mb-8">
             We want to make a difference
           </h2>
@@ -23,16 +30,22 @@ export default function AboutMission() {
             grow your business. OnlineAds 360® gives you everything you need from one 
             login, one team and one low monthly price.
           </p>
-        </div>
+        </motion.div>
         
-        <div className="relative w-full h-[250px] md:h-[423px] rounded-xl overflow-hidden shadow-lg">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0.2 }}
+          className="relative w-full h-[250px] md:h-[423px] rounded-xl overflow-hidden shadow-lg group"
+        >
           <Image
             src="/images/About Page/mission.png"
             alt="Our Mission"
             fill
-            className="object-cover"
+            className="object-cover transition-transform duration-1000 group-hover:scale-105"
           />
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { createClient } from '@/utils/supabase/client';
 import { LayoutDashboard, FileText, Settings, LogOut, PlusCircle, MessageSquare } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 import { useEffect, useState } from 'react';
 
@@ -60,29 +61,45 @@ export default function AdminLayout({
   return (
     <div className="flex min-h-screen bg-gray-50">
       {/* Sidebar */}
-      <aside className="w-64 bg-white border-r border-gray-200 flex flex-col">
+      <motion.aside 
+        initial={{ x: -260 }}
+        animate={{ x: 0 }}
+        transition={{ type: "spring", damping: 20, stiffness: 100 }}
+        className="w-64 bg-white border-r border-gray-200 flex flex-col z-30"
+      >
         <div className="p-6 border-b border-gray-200">
           <h1 className="text-xl font-bold text-gray-900">Admin Panel</h1>
         </div>
         
         <nav className="flex-1 p-4 space-y-2">
-          {navItems.map((item) => (
-            <Link
+          {navItems.map((item, index) => (
+            <motion.div
               key={item.name}
-              href={item.href}
-              className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
-                pathname === item.href
-                  ? 'bg-blue-50 text-blue-600'
-                  : 'text-gray-600 hover:bg-gray-50'
-              }`}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: index * 0.1 + 0.3 }}
             >
-              <item.icon size={20} />
-              <span className="font-medium">{item.name}</span>
-            </Link>
+              <Link
+                href={item.href}
+                className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
+                  pathname === item.href
+                    ? 'bg-blue-50 text-blue-600'
+                    : 'text-gray-600 hover:bg-gray-50'
+                }`}
+              >
+                <item.icon size={20} />
+                <span className="font-medium">{item.name}</span>
+              </Link>
+            </motion.div>
           ))}
         </nav>
 
-        <div className="p-4 border-t border-gray-200">
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.8 }}
+          className="p-4 border-t border-gray-200"
+        >
           <button
             onClick={handleLogout}
             className="flex items-center gap-3 px-4 py-3 w-full rounded-lg text-red-600 hover:bg-red-50 transition-colors"
@@ -90,12 +107,23 @@ export default function AdminLayout({
             <LogOut size={20} />
             <span className="font-medium">Sign Out</span>
           </button>
-        </div>
-      </aside>
+        </motion.div>
+      </motion.aside>
 
       {/* Main Content */}
       <main className="flex-1 overflow-auto">
-        {children}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={pathname}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.2 }}
+            className="p-8"
+          >
+            {children}
+          </motion.div>
+        </AnimatePresence>
       </main>
     </div>
   );

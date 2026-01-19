@@ -1,4 +1,29 @@
+'use client';
+
 import Image from 'next/image';
+import { motion, Variants } from 'framer-motion';
+
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15
+    }
+  }
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut"
+    }
+  }
+};
 
 const steps = [
   {
@@ -63,10 +88,20 @@ export default function ServiceProcess() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+        >
           {steps.map((item, index) => (
-            <div key={index} className="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
-              <div className="relative w-14 h-14 mb-6">
+            <motion.div 
+              key={index} 
+              variants={itemVariants}
+              className="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow group"
+            >
+              <div className="relative w-14 h-14 mb-6 transition-transform duration-500 group-hover:scale-110">
                 <Image
                   src={item.icon}
                   alt={item.title}
@@ -84,13 +119,19 @@ export default function ServiceProcess() {
               <div className="pt-6 border-t border-gray-50 flex items-center gap-2">
                 <span className={`text-[14px] font-medium ${item.color}`}>{item.note}</span>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
-        <div className="mt-20 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="mt-20 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8"
+        >
           {stats.map((stat, index) => (
-            <div key={index} className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm text-center flex flex-col items-center">
+            <div key={index} className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm text-center flex flex-col items-center hover:shadow-lg transition-shadow duration-300">
               <div className="relative w-10 h-10 mb-4">
                 <Image
                   src={stat.icon}
@@ -103,7 +144,7 @@ export default function ServiceProcess() {
               <div className="text-[12px] text-[#6B7280]">{stat.label}</div>
             </div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

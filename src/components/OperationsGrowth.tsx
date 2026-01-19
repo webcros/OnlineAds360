@@ -1,4 +1,29 @@
+'use client';
+
 import Image from 'next/image';
+import { motion, Variants } from 'framer-motion';
+
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut"
+    }
+  }
+};
 
 const growthServices = [
   {
@@ -49,15 +74,31 @@ export default function OperationsGrowth() {
   return (
     <section className="py-24 bg-[#F9FAFB]">
       <div className="container mx-auto px-4 lg:px-12">
-        <div className="mb-16">
+        <motion.div 
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-16"
+        >
           <h2 className="text-[36px] font-bold text-[#111827] mb-4">Operations & Growth</h2>
           <p className="text-[18px] text-[#4B5563]">Streamline operations and scale with confidence</p>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
           {growthServices.map((service, index) => (
-            <div key={index} className="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
-              <div className="relative w-12 h-12 mb-6">
+            <motion.div 
+              key={index} 
+              variants={itemVariants}
+              className="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow group"
+            >
+              <div className="relative w-12 h-12 mb-6 transition-transform duration-500 group-hover:scale-110">
                 <Image
                   src={service.icon}
                   alt={service.title}
@@ -80,9 +121,9 @@ export default function OperationsGrowth() {
                   </li>
                 ))}
               </ul>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

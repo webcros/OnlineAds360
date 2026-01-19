@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import Header from "@/components/Header";
 import ContactHero from "@/components/ContactHero";
 import ContactOptions from "@/components/ContactOptions";
@@ -6,9 +7,23 @@ import MoreWaysToHelp from "@/components/MoreWaysToHelp";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 
-export const metadata = {
-  title: 'Contact Us | OnlineAds360',
-  description: 'Talk to a marketing pro today. Reach out to our sales team or get support for your account.',
+export const metadata: Metadata = {
+  title: 'Contact Us',
+  description: 'Talk to a marketing pro today. Reach out to our sales team or get support for your account at OnlineAds360.',
+  openGraph: {
+    title: 'Contact Us | OnlineAds360',
+    description: 'Talk to a marketing pro today. Reach out to our sales team or get support for your account.',
+    type: 'website',
+    url: '/contact',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Contact Us | OnlineAds360',
+    description: 'Talk to a marketing pro today. Reach out to our sales team or get support.',
+  },
+  alternates: {
+    canonical: '/contact',
+  },
 };
 
 export default function ContactPage() {

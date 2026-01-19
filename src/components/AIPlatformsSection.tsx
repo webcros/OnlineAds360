@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 export default function AIPlatformsSection() {
   const aiPlatforms = ['ChatGPT', 'Gemini', 'Perplexity', 'Claude', 'Copilot'];
@@ -39,18 +40,30 @@ export default function AIPlatformsSection() {
     <section className="bg-gradient-to-b from-[#EFF6FF] to-white py-24">
       <div className="max-w-[1280px] mx-auto px-5 lg:px-20">
         {/* Section Title */}
-        <h2 className="text-[32px] md:text-[60px] leading-[40px] md:leading-[75px] font-bold tracking-[-0.5px] text-[#111827] text-center mb-16 max-w-[1111px] mx-auto">
+        <motion.h2 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-[32px] md:text-[60px] leading-[40px] md:leading-[75px] font-bold tracking-[-0.5px] text-[#111827] text-center mb-16 max-w-[1111px] mx-auto"
+        >
           Get discovered on the top AI platforms like{' '}
           <span className="text-[#2563EB] underline decoration-[#2563EB] underline-offset-4 inline-block w-full md:w-[280px] text-center md:text-left">
             {displayedText}
             <span className="animate-pulse">|</span>
           </span>
-        </h2>
+        </motion.h2>
 
         {/* Three Cards Demo */}
         <div className="relative flex flex-col lg:flex-row justify-center items-center gap-8 lg:gap-0 mb-20 min-h-auto lg:min-h-[400px]">
           {/* Curved dotted line - Hidden on mobile */}
-          <svg className="hidden lg:block absolute left-[288px] top-1/2 w-[160px] h-[100px] -translate-y-1/2 pointer-events-none" style={{ zIndex: 5 }}>
+          <motion.svg 
+            initial={{ opacity: 0, pathLength: 0 }}
+            whileInView={{ opacity: 1, pathLength: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.5, delay: 1 }}
+            className="hidden lg:block absolute left-[288px] top-1/2 w-[160px] h-[100px] -translate-y-1/2 pointer-events-none" style={{ zIndex: 5 }}
+          >
             <path
               d="M 0 50 Q 80 10, 160 50"
               stroke="#93C5FD"
@@ -58,10 +71,16 @@ export default function AIPlatformsSection() {
               strokeDasharray="8,8"
               fill="none"
             />
-          </svg>
+          </motion.svg>
 
           {/* Curved dotted line - Hidden on mobile */}
-          <svg className="hidden lg:block absolute right-[320px] top-1/2 w-[160px] h-[100px] -translate-y-1/2 pointer-events-none" style={{ zIndex: 5 }}>
+          <motion.svg 
+            initial={{ opacity: 0, pathLength: 0 }}
+            whileInView={{ opacity: 1, pathLength: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.5, delay: 1.2 }}
+            className="hidden lg:block absolute right-[320px] top-1/2 w-[160px] h-[100px] -translate-y-1/2 pointer-events-none" style={{ zIndex: 5 }}
+          >
             <path
               d="M 0 50 Q 80 10, 160 50"
               stroke="#93C5FD"
@@ -69,10 +88,16 @@ export default function AIPlatformsSection() {
               strokeDasharray="8,8"
               fill="none"
             />
-          </svg>
+          </motion.svg>
 
           {/* Left Card - AI Text Generator */}
-          <div className="relative lg:absolute lg:left-0 lg:top-8 w-full max-w-[288px] bg-white border border-[#F3F4F6] shadow-[0px_4px_6px_rgba(0,0,0,0.1),0px_10px_15px_rgba(0,0,0,0.1)] rounded-xl p-6">
+          <motion.div 
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="relative lg:absolute lg:left-0 lg:top-8 w-full max-w-[288px] bg-white border border-[#F3F4F6] shadow-[0px_4px_6px_rgba(0,0,0,0.1),0px_10px_15px_rgba(0,0,0,0.1)] rounded-xl p-6"
+          >
             <div className="flex items-center gap-2 mb-10">
               <div className="w-6 h-6 bg-[#F3E8FF] rounded-full flex items-center justify-center">
                 <svg width="15" height="12" viewBox="0 0 15 12" fill="none">
@@ -102,13 +127,19 @@ export default function AIPlatformsSection() {
               />
             </div>
             
-            <button className="w-full h-9 bg-[#2563EB] rounded-lg text-white text-[14px] leading-[17px] font-bold tracking-[-0.5px]">
+            <button className="w-full h-9 bg-[#2563EB] rounded-lg text-white text-[14px] leading-[17px] font-bold tracking-[-0.5px] hover:scale-105 transition-transform">
               Generate
             </button>
-          </div>
+          </motion.div>
 
           {/* Center Card - Website Preview */}
-          <div className="relative z-10 w-full max-w-[384px] bg-white border border-[#E5E7EB] shadow-[0px_8px_10px_rgba(0,0,0,0.1),0px_20px_25px_rgba(0,0,0,0.1)] rounded-xl overflow-hidden">
+          <motion.div 
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="relative z-10 w-full max-w-[384px] bg-white border border-[#E5E7EB] shadow-[0px_8px_10px_rgba(0,0,0,0.1),0px_20px_25px_rgba(0,0,0,0.1)] rounded-xl overflow-hidden"
+          >
             {/* Browser Header */}
             <div className="bg-[#F9FAFB] border-b border-[#E5E7EB] px-4 py-3">
               <div className="flex items-center gap-2">
@@ -141,14 +172,20 @@ export default function AIPlatformsSection() {
                 Transform your outdoor space with our expert landscaping and garden design services.
               </p>
               
-              <button className="px-6 h-9 bg-[#16A34A] rounded-lg text-white text-[14px] leading-[17px] font-bold tracking-[-0.5px]">
+              <button className="px-6 h-9 bg-[#16A34A] rounded-lg text-white text-[14px] leading-[17px] font-bold tracking-[-0.5px] hover:scale-105 transition-transform">
                 Get Free Quote
               </button>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Card - AI Search Result */}
-          <div className="relative lg:absolute lg:right-0 lg:top-8 w-full max-w-[320px] bg-white border border-[#F3F4F6] shadow-[0px_4px_6px_rgba(0,0,0,0.1),0px_10px_15px_rgba(0,0,0,0.1)] rounded-xl p-6">
+          <motion.div 
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="relative lg:absolute lg:right-0 lg:top-8 w-full max-w-[320px] bg-white border border-[#F3F4F6] shadow-[0px_4px_6px_rgba(0,0,0,0.1),0px_10px_15px_rgba(0,0,0,0.1)] rounded-xl p-6"
+          >
             <div className="flex items-center gap-2 mb-10">
               <svg width="20" height="16" viewBox="0 0 20 16" fill="none">
                 <path d="M0 0H20V16H0V0Z" fill="#2563EB"/>
@@ -183,35 +220,59 @@ export default function AIPlatformsSection() {
                 </span>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
 
         {/* Description Text */}
-        <div className="text-center mb-16 max-w-[897px] mx-auto">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.8 }}
+          className="text-center mb-16 max-w-[897px] mx-auto"
+        >
           <p className="text-[20px] leading-[33px] font-bold tracking-[-0.5px] text-[#64748B]">
             Optimize for the future of AI-driven search. <span className="text-[#111827]">OnlineAds360</span> automatically helps your business get found in AI-generated responses by:
           </p>
-        </div>
+        </motion.div>
 
         {/* Three Feature Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-          <div className="bg-white border border-[#F3F4F6] shadow-[0px_1px_2px_rgba(0,0,0,0.05)] rounded-xl p-8 min-h-[182px] flex items-center justify-center">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="bg-white border border-[#F3F4F6] shadow-[0px_1px_2px_rgba(0,0,0,0.05)] rounded-xl p-8 min-h-[182px] flex items-center justify-center hover:shadow-lg transition-shadow"
+          >
             <p className="text-[16px] leading-[19px] font-bold tracking-[-0.5px] text-[#374151] text-center">
               Keeping your business information consistent and up to date across the web
             </p>
-          </div>
+          </motion.div>
 
-          <div className="bg-white border border-[#F3F4F6] shadow-[0px_1px_2px_rgba(0,0,0,0.05)] rounded-xl p-8 min-h-[182px] flex items-center justify-center">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="bg-white border border-[#F3F4F6] shadow-[0px_1px_2px_rgba(0,0,0,0.05)] rounded-xl p-8 min-h-[182px] flex items-center justify-center hover:shadow-lg transition-shadow"
+          >
             <p className="text-[16px] leading-[19px] font-bold tracking-[-0.5px] text-[#374151] text-center">
               Adding schema markup to your website for better search and AI visibility
             </p>
-          </div>
+          </motion.div>
 
-          <div className="bg-white border border-[#F3F4F6] shadow-[0px_1px_2px_rgba(0,0,0,0.05)] rounded-xl p-8 min-h-[182px] flex items-center justify-center">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="bg-white border border-[#F3F4F6] shadow-[0px_1px_2px_rgba(0,0,0,0.05)] rounded-xl p-8 min-h-[182px] flex items-center justify-center hover:shadow-lg transition-shadow"
+          >
             <p className="text-[16px] leading-[19px] font-bold tracking-[-0.5px] text-[#374151] text-center">
               Claiming and optimizing your business listings across top directories
             </p>
-          </div>
+          </motion.div>
         </div>
 
         {/* CTA Button */}
