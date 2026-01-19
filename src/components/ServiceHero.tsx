@@ -3,17 +3,17 @@ import Link from 'next/link';
 
 export default function ServiceHero() {
   return (
-    <section className="relative w-full bg-white overflow-hidden py-16 lg:py-24">
+    <section className="relative w-full bg-white overflow-hidden py-8 md:py-12 lg:py-24">
       <div className="container mx-auto px-5 lg:px-20">
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+        <div className="flex flex-col lg:flex-row items-center gap-8 md:gap-12 lg:gap-16">
           
           {/* Left Section: Content Area */}
           <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left z-10">
-            <h1 className="font-['Inter'] font-bold text-[36px] md:text-[54px] lg:text-[60px] leading-[1.1] tracking-[-0.5px] text-[#1E293B] mb-6">
+            <h1 className="font-['Inter'] font-bold text-[28px] md:text-[54px] lg:text-[60px] leading-[1.1] tracking-[-0.5px] text-[#1E293B] mb-4 md:mb-6">
               Done-for-you marketing services for small business
             </h1>
             
-            <p className="font-['Inter'] font-normal text-[18px] md:text-[20px] leading-relaxed text-[#4B5563] mb-10 max-w-[540px]">
+            <p className="font-['Inter'] font-normal text-[16px] md:text-[20px] leading-relaxed text-[#4B5563] mb-6 md:mb-10 max-w-[540px]">
               Get a dedicated marketing team and powerful platform that work together to grow your business.
             </p>
             
@@ -46,7 +46,7 @@ export default function ServiceHero() {
             </div>
 
             {/* Main Hero Image Wrapper */}
-            <div className="relative w-full aspect-[4/3] lg:aspect-auto lg:h-[500px] drop-shadow-[0px_20px_50px_rgba(0,0,0,0.15)]">
+            <div className="relative w-full h-[300px] md:h-[400px] lg:aspect-auto lg:h-[500px] drop-shadow-[0px_20px_50px_rgba(0,0,0,0.15)]">
               <Image
                 src="/images/Service Page/service_hero.png"
                 alt="Marketing Team & Platform"
@@ -59,7 +59,7 @@ export default function ServiceHero() {
         </div>
 
         {/* Trusted By Bar */}
-        <div className="mt-20 lg:mt-24 pt-12 border-t border-gray-100">
+        <div className="mt-12 md:mt-16 lg:mt-24 pt-8 md:pt-12 border-t border-gray-100">
           <p className="text-[14px] font-medium text-center text-[#6B7280] mb-8 tracking-wide uppercase">
             Trusted by 15,000+ small businesses worldwide
           </p>

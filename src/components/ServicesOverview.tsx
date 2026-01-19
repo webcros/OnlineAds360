@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 export default function ServicesOverview() {
   return (
-    <section className="py-16 bg-white overflow-hidden">
+    <section id="services" className="py-16 bg-white overflow-hidden">
       <div className="container mx-auto px-4 lg:px-0 max-w-[1344px]">
         {/* Mobile Layout (Stack) / Desktop Layout (Grid) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { Scissors, Store, Wrench } from 'lucide-react';
 
 export default function IndustrySection() {
@@ -64,11 +65,14 @@ export default function IndustrySection() {
 
         {/* Find Industry Button */}
         <div className="flex justify-center">
-          <button className="w-[206.77px] h-[52px] bg-white border-2 border-[#3B82F6] rounded-xl shadow-[0px_1px_2px_rgba(0,0,0,0.05)] hover:bg-blue-50 transition-colors">
+          <Link 
+            href="/services"
+            className="inline-flex items-center justify-center w-[206.77px] h-[52px] bg-white border-2 border-[#3B82F6] rounded-xl shadow-[0px_1px_2px_rgba(0,0,0,0.05)] hover:bg-blue-50 transition-colors"
+          >
             <span className="text-[16px] leading-[19px] font-bold tracking-[-0.5px] text-[#3B82F6]">
               Find your industry
             </span>
-          </button>
+          </Link>
         </div>
       </div>
     </section>

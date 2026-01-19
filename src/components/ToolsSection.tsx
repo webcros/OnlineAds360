@@ -1,5 +1,7 @@
 'use client';
 
+import Link from 'next/link';
+
 interface FeatureCardProps {
   category: string;
   title: string;
@@ -21,12 +23,18 @@ const FeatureCard = ({ category, title, description, imageSrc, imagePosition = '
         {description}
       </p>
       <div className="flex items-center gap-4">
-        <button className="px-6 py-3 bg-[#103AB9] text-white font-bold text-[16px] tracking-[-0.5px] rounded-lg hover:bg-[#0d2f94] transition-colors">
+        <Link 
+          href="/services"
+          className="inline-flex items-center justify-center px-6 py-3 bg-[#103AB9] text-white font-bold text-[16px] tracking-[-0.5px] rounded-lg hover:bg-[#0d2f94] transition-colors"
+        >
           Learn More
-        </button>
-        <button className="text-[#4338CA] font-semibold text-[16px] tracking-[-0.5px] hover:underline">
+        </Link>
+        <Link 
+          href="/contact"
+          className="text-[#4338CA] font-semibold text-[16px] tracking-[-0.5px] hover:underline"
+        >
           View Plans →
-        </button>
+        </Link>
       </div>
     </div>
   );
