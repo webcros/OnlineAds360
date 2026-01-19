@@ -1,0 +1,65 @@
+'use client';
+
+import Link from 'next/link';
+import { Play } from 'lucide-react';
+
+export default function Hero() {
+  return (
+    <section className="relative bg-gradient-to-br from-blue-50 via-purple-50 to-green-50 overflow-hidden">
+      <div className="max-w-[1440px] mx-auto px-5 lg:px-20 pt-20 pb-0">
+        {/* Hero Content */}
+        <div className="text-center max-w-[896px] mx-auto">
+          {/* Badge */}
+          <p className="font-inter font-bold text-[12px] leading-[15px] tracking-[0.7px] text-center text-[#4338CA] mb-6">
+            #1 BUSINESS PLATFORM FOR ENTREPRENEURS
+          </p>
+
+          {/* Main Headline */}
+          <h1 className="font-inter font-black text-[36px] md:text-[60px] leading-[45px] md:leading-[75px] tracking-[-0.5px] text-center text-[#374151] mb-6">
+            Get everything you need to
+            <span className="hidden md:inline"><br /></span>
+            manage and grow your
+            <span className="hidden md:inline"><br /></span>
+            <span className="text-[#103AB9] ml-2 md:ml-0">business</span>
+          </h1>
+
+          {/* Subheadline */}
+          <p className="font-inter font-bold text-[16px] md:text-[20px] leading-[24px] md:leading-[28px] tracking-[-0.5px] text-center text-[#4B5563] mb-10 max-w-[658px] mx-auto">
+            Transform your business operations with our all-in-one platform. From
+            websites to marketing automation, we&apos;ve got everything covered.
+          </p>
+
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Link 
+              href="/contact"
+              className="w-[207px] h-[60px] bg-[#103AB9] rounded-lg shadow-[0px_8px_10px_rgba(16,39,185,0.3),0px_20px_25px_rgba(16,44,185,0.3)] hover:bg-[#0d2f94] transition-all flex items-center justify-center"
+            >
+              <span className="font-inter font-bold text-[18px] leading-[22px] tracking-[-0.5px] text-center text-white">
+                Get Started Free
+              </span>
+            </Link>
+            <button className="flex items-center justify-center gap-3 w-[201px] h-[64px] border-2 border-[#374151] rounded-lg hover:bg-gray-100 transition-colors">
+              <Play className="w-[13.5px] h-[18px] fill-[#374151] text-[#374151]" />
+              <span className="font-inter font-bold text-[18px] leading-[28px] tracking-[-0.5px] text-center text-[#374151]">
+                Watch Demo
+              </span>
+            </button>
+          </div>
+        </div>
+
+        {/* Dashboard Preview */}
+        <div className="relative mt-16 max-w-[1000px] mx-auto">
+          {/* Main Dashboard Image */}
+          <div className="relative rounded-xl overflow-hidden flex items-center justify-center">
+            <img
+              src="/images/Group1.png"
+              alt="Dashboard Preview"
+              className="w-full h-auto object-contain shadow-2xl rounded-xl"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

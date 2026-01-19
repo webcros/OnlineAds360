@@ -1,0 +1,28 @@
+<svg width="86" height="86" viewBox="0 0 86 86" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g filter="url(#filter0_dd_52_237)">
+<path d="M15 17C15 10.3726 20.3726 5 27 5H59C65.6274 5 71 10.3726 71 17V49C71 55.6274 65.6274 61 59 61H27C20.3726 61 15 55.6274 15 49V17Z" fill="url(#paint0_linear_52_237)"/>
+<path d="M55 49H31V17H55V49Z" stroke="#E5E7EB"/>
+<path d="M55 44H31V20H55V44Z" stroke="#E5E7EB"/>
+<path d="M34 23C34 22.1703 33.3297 21.5 32.5 21.5C31.6703 21.5 31 22.1703 31 23V38.75C31 40.8219 32.6781 42.5 34.75 42.5H53.5C54.3297 42.5 55 41.8297 55 41C55 40.1703 54.3297 39.5 53.5 39.5H34.75C34.3375 39.5 34 39.1625 34 38.75V23ZM53.0594 27.0594C53.6453 26.4734 53.6453 25.5219 53.0594 24.9359C52.4734 24.35 51.5219 24.35 50.9359 24.9359L46 29.8766L43.3094 27.1859C42.7234 26.6 41.7719 26.6 41.1859 27.1859L35.9359 32.4359C35.35 33.0219 35.35 33.9734 35.9359 34.5594C36.5219 35.1453 37.4734 35.1453 38.0594 34.5594L42.25 30.3734L44.9406 33.0641C45.5266 33.65 46.4781 33.65 47.0641 33.0641L53.0641 27.0641L53.0594 27.0594Z" fill="white"/>
+</g>
+<defs>
+<filter id="filter0_dd_52_237" x="0" y="0" width="86" height="86" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="10"/>
+<feGaussianBlur stdDeviation="7.5"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0.231373 0 0 0 0 0.509804 0 0 0 0 0.964706 0 0 0 0.25 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_52_237"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="4"/>
+<feGaussianBlur stdDeviation="3"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0.231373 0 0 0 0 0.509804 0 0 0 0 0.964706 0 0 0 0.25 0"/>
+<feBlend mode="normal" in2="effect1_dropShadow_52_237" result="effect2_dropShadow_52_237"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect2_dropShadow_52_237" result="shape"/>
+</filter>
+<linearGradient id="paint0_linear_52_237" x1="-4.79899" y1="24.799" x2="34.799" y2="64.397" gradientUnits="userSpaceOnUse">
+<stop stop-color="#3B82F6"/>
+<stop offset="1" stop-color="#2563EB"/>
+</linearGradient>
+</defs>
+</svg>
