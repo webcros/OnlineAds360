@@ -40,42 +40,73 @@ export default function AboutHistory() {
   const events = [
     {
       year: '2009',
-      text: 'Founded by Joe and JB Kellogg with a vision to help small businesses compete in the digital age.',
+      title: 'The Inception',
+      text: 'Founded by Joe and JB Kellogg with a vision to help small businesses compete in the digital age through innovative marketing strategies.',
     },
     {
       year: '2012',
-      text: 'Started designing our first comprehensive platform to integrate marketing and business tools.',
+      title: 'Platform Development',
+      text: 'Started designing our first comprehensive platform to integrate marketing and business tools into a single, user-friendly interface.',
     },
     {
       year: '2014',
-      text: 'Launched first platform version, quickly growing to 2,500+ customers.',
+      title: 'Major Launch',
+      text: 'Launched the first version of our all-in-one platform, quickly growing our community to over 2,500 active customers.',
     },
     {
       year: '2018',
-      text: 'Acquired Silveredge, expanding to 10,000+ customers and enhanced capabilities.',
+      title: 'Expansion Phase',
+      text: 'Acquired Silveredge, which allowed us to expand our reach to 10,000+ customers and introduce enhanced analytical capabilities.',
     },
     {
       year: '2022',
-      text: 'Added e-commerce and mobile app features, reaching 20,000+ customers.',
+      title: 'Next-Gen Features',
+      text: 'Added integrated e-commerce and mobile app management features, empowering 20,000+ businesses to scale globally.',
     },
     {
       year: '2024',
-      text: 'Integrated AI technology to provide even smarter business solutions.',
+      title: 'AI Integration',
+      text: 'Revolutionized our platform with advanced AI technology, providing predictive insights and automated marketing optimization.',
     },
   ];
 
   return (
-    <section className="bg-[#F5F7FA] py-24 overflow-hidden">
-      <div className="max-w-[1280px] mx-auto px-5 lg:px-20">
-        <motion.h2 
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-[36px] font-bold text-[#2C3E50] text-center mb-20"
-        >
-          Our history
-        </motion.h2>
+    <section className="bg-[#F8FAFC] py-32 overflow-hidden relative">
+      {/* Decorative background element */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none opacity-[0.03]">
+        <div className="absolute top-[10%] left-[-10%] w-[40%] h-[40%] bg-[#0052CC] rounded-full blur-[120px]" />
+        <div className="absolute bottom-[10%] right-[-10%] w-[40%] h-[40%] bg-[#0052CC] rounded-full blur-[120px]" />
+      </div>
+
+      <div className="max-w-[1280px] mx-auto px-5 lg:px-20 relative">
+        <div className="text-center max-w-2xl mx-auto mb-24">
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-[#0052CC] font-bold text-sm uppercase tracking-[2px] mb-4"
+          >
+            Our Journey
+          </motion.p>
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-[40px] md:text-[52px] font-black text-[#1E293B] leading-tight"
+          >
+            Our history
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-[#64748B] text-lg mt-6"
+          >
+            Over a decade of innovation, growth, and commitment to small business success.
+          </motion.p>
+        </div>
         
         <div className="relative">
           {/* Vertical Line - Left on mobile, center on desktop */}
@@ -84,7 +115,7 @@ export default function AboutHistory() {
             whileInView={{ height: '100%' }}
             viewport={{ once: true }}
             transition={{ duration: 1.5, ease: "easeInOut" }}
-            className="absolute left-4 md:left-1/2 md:-translate-x-1/2 w-1 bg-[#0052CC]" 
+            className="absolute left-4 md:left-1/2 md:-translate-x-1/2 w-[2px] bg-gradient-to-b from-[#0052CC] via-[#0052CC]/50 to-transparent" 
           />
           
           <motion.div 
@@ -92,33 +123,46 @@ export default function AboutHistory() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
-            className="space-y-12"
+            className="space-y-24"
           >
             {events.map((event, index) => (
               <div key={index} className={`flex flex-col md:flex-row items-center w-full ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
                 {/* Content Card */}
                 <motion.div 
                   variants={index % 2 === 0 ? itemVariants : itemVariantsLeft}
-                  className="w-full md:w-1/2 pl-12 pr-4 md:px-12 mb-8 md:mb-0"
+                  className="w-full md:w-1/2 pl-12 pr-4 md:px-16"
                 >
-                  <div className="bg-white p-6 md:p-8 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
-                    <h3 className="text-[24px] md:text-[30px] font-bold text-[#2C3E50] mb-2 md:mb-4">
-                      {event.year}
-                    </h3>
-                    <p className="text-[14px] md:text-[16px] text-[#717171] leading-relaxed">
-                      {event.text}
-                    </p>
+                  <div className="relative group">
+                    <div className="absolute -inset-1 bg-gradient-to-r from-[#0052CC] to-[#2563EB] rounded-2xl blur opacity-0 group-hover:opacity-10 transition duration-500" />
+                    <div className="relative bg-white p-8 rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.03)] border border-gray-100 group-hover:border-[#0052CC]/20 transition-all duration-500">
+                      <div className="flex items-center justify-between mb-4">
+                        <span className="text-[32px] font-black text-[#0052CC] opacity-20 group-hover:opacity-100 transition-opacity duration-500">
+                          {event.year}
+                        </span>
+                        <div className="h-px flex-1 bg-gray-100 mx-4" />
+                      </div>
+                      <h3 className="text-[22px] font-bold text-[#1E293B] mb-3 group-hover:text-[#0052CC] transition-colors duration-300">
+                        {event.title}
+                      </h3>
+                      <p className="text-[16px] text-[#64748B] leading-relaxed font-medium">
+                        {event.text}
+                      </p>
+                    </div>
                   </div>
                 </motion.div>
                 
                 {/* Dot - Left on mobile, center on desktop */}
-                <motion.div 
-                  initial={{ scale: 0 }}
-                  whileInView={{ scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.5 + (index * 0.1), duration: 0.4 }}
-                  className="absolute left-4 md:left-1/2 -translate-x-1/2 w-6 h-6 bg-[#0052CC] border-4 border-white rounded-full z-10" 
-                />
+                <div className="absolute left-4 md:left-1/2 -translate-x-1/2 flex items-center justify-center">
+                  <motion.div 
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.5 + (index * 0.1), duration: 0.4 }}
+                    className="w-10 h-10 bg-white shadow-xl border-[3px] border-[#0052CC] rounded-full z-10 flex items-center justify-center"
+                  >
+                    <div className="w-3 h-3 bg-[#0052CC] rounded-full" />
+                  </motion.div>
+                </div>
                 
                 {/* Spacer for desktop layout */}
                 <div className="hidden md:block md:w-1/2" />

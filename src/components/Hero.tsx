@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { Play } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -55,7 +56,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8, duration: 0.8 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
+            className="flex items-center justify-center"
           >
             <Link 
               href="/contact"
@@ -65,12 +66,6 @@ export default function Hero() {
                 Get Started Free
               </span>
             </Link>
-            <button className="flex items-center justify-center gap-3 w-[201px] h-[64px] border-2 border-[#374151] rounded-lg hover:bg-gray-100 transition-all hover:scale-105">
-              <Play className="w-[13.5px] h-[18px] fill-[#374151] text-[#374151]" />
-              <span className="font-inter font-bold text-[18px] leading-[28px] tracking-[-0.5px] text-center text-[#374151]">
-                Watch Demo
-              </span>
-            </button>
           </motion.div>
         </motion.div>
 
@@ -82,11 +77,15 @@ export default function Hero() {
           className="relative mt-16 max-w-[1000px] mx-auto"
         >
           {/* Main Dashboard Image */}
-          <div className="relative rounded-xl overflow-hidden flex items-center justify-center group">
-            <img
+          <div className="relative rounded-xl overflow-hidden flex items-center justify-center group aspect-[16/10]">
+            <Image
               src="/images/Group1.png"
               alt="Dashboard Preview"
-              className="w-full h-auto object-contain shadow-2xl rounded-xl transition-transform duration-700 group-hover:scale-[1.02]"
+              fill
+              priority
+              quality={85}
+              sizes="(max-width: 1024px) 100vw, 1000px"
+              className="object-contain transition-transform duration-700 group-hover:scale-[1.02]"
             />
           </div>
         </motion.div>

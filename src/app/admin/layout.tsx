@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { createClient } from '@/utils/supabase/client';
 import { LayoutDashboard, FileText, Settings, LogOut, PlusCircle, MessageSquare } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
 
 import { useEffect, useState } from 'react';
 
@@ -34,7 +33,7 @@ export default function AdminLayout({
   }, [pathname, router, supabase.auth]);
 
   if (pathname === '/admin/login') return children;
-  
+
   if (isAuthorized === null) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
@@ -53,7 +52,7 @@ export default function AdminLayout({
   const navItems = [
     { name: 'Dashboard', href: '/admin/dashboard', icon: LayoutDashboard },
     { name: 'Messages', href: '/admin/messages', icon: MessageSquare },
-    { name: 'All Blogs', href: '/admin/dashboard', icon: FileText },
+    { name: 'All Blogs', href: '/admin/blog', icon: FileText },
     { name: 'New Blog', href: '/admin/blog/new', icon: PlusCircle },
     { name: 'Settings', href: '/admin/settings', icon: Settings },
   ];
@@ -61,10 +60,7 @@ export default function AdminLayout({
   return (
     <div className="flex min-h-screen bg-gray-50">
       {/* Sidebar */}
-      <motion.aside 
-        initial={{ x: -260 }}
-        animate={{ x: 0 }}
-        transition={{ type: "spring", damping: 20, stiffness: 100 }}
+      <aside
         className="w-64 bg-white border-r border-gray-200 flex flex-col z-30"
       >
         <div className="p-6 border-b border-gray-200">
@@ -72,34 +68,22 @@ export default function AdminLayout({
         </div>
         
         <nav className="flex-1 p-4 space-y-2">
-          {navItems.map((item, index) => (
-            <motion.div
+          {navItems.map((item) => (
+            <Link
               key={item.name}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: index * 0.1 + 0.3 }}
-            >
-              <Link
-                href={item.href}
-                className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
-                  pathname === item.href
-                    ? 'bg-blue-50 text-blue-600'
-                    : 'text-gray-600 hover:bg-gray-50'
+              href={item.href}
+              className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${pathname === item.href
+                  ? 'bg-blue-50 text-blue-600'
+                  : 'text-gray-600 hover:bg-gray-50'
                 }`}
-              >
-                <item.icon size={20} />
-                <span className="font-medium">{item.name}</span>
-              </Link>
-            </motion.div>
+            >
+              <item.icon size={20} />
+              <span className="font-medium">{item.name}</span>
+            </Link>
           ))}
         </nav>
 
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8 }}
-          className="p-4 border-t border-gray-200"
-        >
+        <div className="p-4 border-t border-gray-200">
           <button
             onClick={handleLogout}
             className="flex items-center gap-3 px-4 py-3 w-full rounded-lg text-red-600 hover:bg-red-50 transition-colors"
@@ -107,23 +91,12 @@ export default function AdminLayout({
             <LogOut size={20} />
             <span className="font-medium">Sign Out</span>
           </button>
-        </motion.div>
-      </motion.aside>
+        </div>
+      </aside>
 
       {/* Main Content */}
-      <main className="flex-1 overflow-auto">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={pathname}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.2 }}
-            className="p-8"
-          >
-            {children}
-          </motion.div>
-        </AnimatePresence>
+      <main className="flex-1 overflow-auto p-8">
+        {children}
       </main>
     </div>
   );
