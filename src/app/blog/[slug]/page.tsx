@@ -5,6 +5,29 @@ import { format } from 'date-fns';
 import AnimatedBlogDetail from '@/components/blog/AnimatedBlogDetail';
 import { Metadata } from 'next';
 
+// Revalidate blog pages every hour to pick up updates
+export const revalidate = 3600;
+
+// Generate static params for all published blogs at build time
+// New blogs will be automatically generated on first request (ISR)
+export async function generateStaticParams() {
+  const supabase = await createClient();
+  
+  const { data: blogs, error } = await supabase
+    .from('blogs')
+    .select('slug')
+    .eq('status', 'published');
+  
+  if (error) {
+    console.error('Failed to fetch blog slugs for static generation:', error);
+    return [];
+  }
+  
+  return (blogs || []).map((blog) => ({
+    slug: blog.slug,
+  }));
+}
+
 interface Props {
   params: Promise<{ slug: string }>;
 }

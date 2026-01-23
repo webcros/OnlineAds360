@@ -1,15 +1,26 @@
 import { MetadataRoute } from 'next';
 import { createClient } from '@/utils/supabase/server';
 
+// Revalidate sitemap every hour to ensure new blogs are included promptly
+export const revalidate = 3600;
+
+// Force dynamic rendering to always fetch fresh data from database
+export const dynamic = 'force-dynamic';
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const supabase = await createClient();
   const baseUrl = 'https://onlineads360.com';
 
-  // Fetch all published blogs
-  const { data: blogs } = await supabase
+  // Fetch all published blogs with error handling
+  const { data: blogs, error } = await supabase
     .from('blogs')
-    .select('slug, updated_at')
-    .eq('status', 'published');
+    .select('slug, updated_at, published_at')
+    .eq('status', 'published')
+    .order('published_at', { ascending: false });
+
+  if (error) {
+    console.error('Failed to fetch blogs for sitemap:', error);
+  }
 
   const blogUrls = (blogs || []).map((blog) => ({
     url: `${baseUrl}/blog/${blog.slug}`,
