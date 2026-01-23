@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import ClientLayout from "@/components/ClientLayout";
+import ClientRootLayout from "@/components/ClientRootLayout";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -94,9 +94,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} antialiased`}>
-        <ClientLayout>
+        <ClientRootLayout>
           {children}
-        </ClientLayout>
+        </ClientRootLayout>
       </body>
     </html>
   );

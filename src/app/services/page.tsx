@@ -1,6 +1,4 @@
 import { Metadata } from 'next';
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 import ServiceHero from "@/components/ServiceHero";
 import ServicesOverview from "@/components/ServicesOverview";
 import ServiceProcess from "@/components/ServiceProcess";
@@ -33,7 +31,6 @@ export const metadata: Metadata = {
 export default function ServicesPage() {
   return (
     <main className="min-h-screen bg-white">
-      <Header />
       <ServiceHero />
       <ServicesOverview />
       <ServiceProcess />
@@ -43,7 +40,6 @@ export default function ServicesPage() {
       <ServiceResults />
       <ServiceFAQ />
       <CTASection />
-      <Footer />
     </main>
   );
 }

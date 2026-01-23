@@ -28,7 +28,7 @@ export default function CTASection() {
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           <Link 
-            href="/contact"
+            href="/plans-and-pricing"
             className="inline-flex items-center justify-center w-[192.28px] h-[52px] bg-[#2563EB] text-white font-bold text-[18px] leading-[22px] tracking-[-0.5px] rounded-lg shadow-[0px_4px_6px_rgba(0,0,0,0.1),0px_10px_15px_rgba(0,0,0,0.1)] hover:bg-blue-700 transition-all hover:scale-105 mb-6"
           >
             Plans & Pricing

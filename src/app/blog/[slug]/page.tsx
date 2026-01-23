@@ -2,8 +2,6 @@ import { createClient } from '@/utils/supabase/server';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { format } from 'date-fns';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import AnimatedBlogDetail from '@/components/blog/AnimatedBlogDetail';
 import { Metadata } from 'next';
 
@@ -58,11 +56,9 @@ export default async function BlogDetailPage({ params }: Props) {
 
   return (
     <div className="min-h-screen bg-white">
-      <Header />
       
       <AnimatedBlogDetail blog={blog} />
 
-      <Footer />
     </div>
   );
 }

@@ -278,7 +278,7 @@ export default function AIPlatformsSection() {
         {/* CTA Button */}
         <div className="flex justify-center">
           <Link 
-            href="/contact"
+            href="/plans-and-pricing"
             className="inline-flex items-center justify-center px-[51.8px] h-[60px] bg-[#2563EB] rounded-xl text-white text-[18px] leading-[22px] font-semibold tracking-[-0.5px] hover:bg-[#1d4ed8] transition-colors"
           >
             Plans & Pricing

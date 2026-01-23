@@ -3,8 +3,6 @@ import { createClient } from '@/utils/supabase/server';
 import Link from 'next/link';
 import Image from 'next/image';
 import { format } from 'date-fns';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 import AnimatedBlogGrid from '@/components/blog/AnimatedBlogGrid';
 
 export const metadata: Metadata = {
@@ -41,7 +39,6 @@ export default async function BlogListingPage() {
 
   return (
     <div className="min-h-screen bg-white">
-      <Header />
 
       <main className="container mx-auto px-5 lg:px-20 py-16 lg:py-24">
         <div className="max-w-4xl mb-16">
@@ -62,8 +59,6 @@ export default async function BlogListingPage() {
           </div>
         )}
       </main>
-
-      <Footer />
     </div>
   );
 }
