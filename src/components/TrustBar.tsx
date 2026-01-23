@@ -50,17 +50,7 @@ export default function TrustBar() {
             </motion.p>
           </div>
 
-          {/* Right side - CTA */}
-          <motion.button 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.8, duration: 0.6 }}
-            className="flex items-center gap-2 text-[#103AB9] font-semibold text-base hover:gap-3 transition-all"
-          >
-            Tour by industry
-            <ArrowRight className="w-4 h-4" />
-          </motion.button>
+
         </motion.div>
       </div>
     </section>

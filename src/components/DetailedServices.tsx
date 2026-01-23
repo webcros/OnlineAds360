@@ -174,8 +174,8 @@ export default function DetailedServices() {
 
               <div className="mt-auto relative z-10 pt-6 border-t border-gray-100">
                 <Link 
-                  href="/contact"
-                  className="inline-flex items-center gap-2 text-[16px] font-bold text-[#1E293B] hover:text-blue-600 transition-all group/link"
+                  href="/plans-and-pricing"
+                  className="inline-flex items-center gap-2 text-[16px] font-bold text-[#2563EB] hover:text-blue-700 transition-all group/link"
                 >
                   Get Started 
                   <ArrowRight className="w-4 h-4 transition-transform group-hover/link:translate-x-1" />

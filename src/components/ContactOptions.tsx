@@ -53,10 +53,10 @@ export default function ContactOptions() {
           <div className="mt-auto">
             <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
               <Link
-                href="/schedule-demo"
+                href="/plans-and-pricing"
                 className="block w-full h-[48px] bg-[#2563EB] text-white font-semibold text-[16px] leading-[48px] rounded-lg text-center hover:bg-blue-700 transition-colors"
               >
-                Contact Sales
+                Plans & Pricing
               </Link>
             </motion.div>
           </div>
@@ -79,10 +79,10 @@ export default function ContactOptions() {
           <div className="mt-auto">
             <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
               <Link
-                href="/help-center"
+                href="/contact"
                 className="block w-full h-[48px] border border-[#E5E7EB] text-black font-semibold text-[16px] leading-[48px] rounded-lg text-center hover:bg-gray-50 transition-all"
               >
-                Visit Help Center
+                Contact Support
               </Link>
             </motion.div>
           </div>

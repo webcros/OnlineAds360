@@ -60,7 +60,7 @@ export default function Hero() {
           >
             <Link 
               href="/plans-and-pricing"
-              className="w-[207px] h-[60px] bg-[#103AB9] rounded-lg shadow-[0px_8px_10px_rgba(16,39,185,0.3),0px_20px_25px_rgba(16,44,185,0.3)] hover:bg-[#0d2f94] transition-all flex items-center justify-center hover:scale-105"
+              className="w-[207px] h-[60px] bg-[#2563EB] rounded-lg shadow-[0px_8px_10px_rgba(37,99,235,0.3),0px_20px_25px_rgba(37,99,235,0.3)] hover:bg-blue-700 transition-all flex items-center justify-center hover:scale-105"
             >
               <span className="font-inter font-bold text-[18px] leading-[22px] tracking-[-0.5px] text-center text-white">
                 Get Started Free

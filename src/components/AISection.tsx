@@ -29,8 +29,8 @@ export default function AISection() {
 
         {/* CTA Button */}
         <Link 
-          href="/contact"
-          className="inline-flex items-center justify-center px-[41.59px] py-[19px] bg-[#103AB9] text-white font-bold text-[18px] leading-[22px] tracking-[-0.5px] rounded-lg shadow-[0_8px_10px_rgba(16,39,185,0.3),0_20px_25px_rgba(16,44,185,0.3)] hover:bg-[#0d2f94] transition-all"
+          href="/plans-and-pricing"
+          className="inline-flex items-center justify-center px-[41.59px] py-[19px] bg-[#2563EB] text-white font-bold text-[18px] leading-[22px] tracking-[-0.5px] rounded-lg shadow-[0_8px_10px_rgba(37,99,235,0.3),0_20px_25px_rgba(37,99,235,0.3)] hover:bg-blue-700 transition-all"
         >
           Get Started
         </Link>

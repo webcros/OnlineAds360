@@ -35,13 +35,13 @@ const FeatureCard = ({ category, title, description, imageSrc, imagePosition = '
       <div className="flex items-center gap-4">
         <Link 
           href="/services"
-          className="inline-flex items-center justify-center px-6 py-3 bg-[#103AB9] text-white font-bold text-[16px] tracking-[-0.5px] rounded-lg hover:bg-[#0d2f94] transition-all hover:scale-105"
+          className="inline-flex items-center justify-center px-6 py-3 bg-[#2563EB] text-white font-bold text-[16px] tracking-[-0.5px] rounded-lg hover:bg-blue-700 transition-all hover:scale-105"
         >
           Learn More
         </Link>
         <Link 
-          href="/contact"
-          className="text-[#4338CA] font-semibold text-[16px] tracking-[-0.5px] hover:underline transition-all hover:translate-x-1"
+          href="/plans-and-pricing"
+          className="text-[#2563EB] font-semibold text-[16px] tracking-[-0.5px] hover:underline transition-all hover:translate-x-1"
         >
           View Plans →
         </Link>

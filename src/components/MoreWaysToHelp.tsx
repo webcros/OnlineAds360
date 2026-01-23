@@ -31,7 +31,7 @@ const resources = [
   {
     title: 'Online Help Center',
     description: 'Browse our comprehensive support documentation, tutorials, and best practices to get the most out of MarketPro.',
-    linkText: 'Visit Help Center',
+    linkText: 'Contact Support',
     href: '#',
     icon: BookOpen,
     iconBg: 'bg-[#DBEAFE]',
