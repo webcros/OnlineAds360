@@ -1,14 +1,12 @@
 'use client';
 
-import { useEditor, EditorContent } from '@tiptap/react';
-import StarterKit from '@tiptap/starter-kit';
-import Link from '@tiptap/extension-link';
-import Image from '@tiptap/extension-image';
-import { useState, useEffect } from 'react';
-import { Sparkles, Save, Globe, Eye, ArrowLeft } from 'lucide-react';
+import { useState } from 'react';
+import { Sparkles, Save, Globe, ArrowLeft, Upload, X, Bold, Italic, List, ListOrdered, Code, Quote, Link as LinkIcon } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { createClient } from '@/utils/supabase/client';
 import { BlogRow } from '@/types/blog';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 interface BlogEditorProps {
   initialData?: BlogRow;
@@ -18,33 +16,87 @@ interface BlogEditorProps {
 export default function BlogEditor({ initialData, isEditing = false }: BlogEditorProps) {
   const [title, setTitle] = useState(initialData?.title || '');
   const [slug, setSlug] = useState(initialData?.slug || '');
+  const [markdown, setMarkdown] = useState(initialData?.content || '');
   const [featuredImage, setFeaturedImage] = useState(initialData?.featured_image || '');
   const [metaTitle, setMetaTitle] = useState(initialData?.meta_title || '');
   const [metaDesc, setMetaDesc] = useState(initialData?.meta_description || '');
   const [metaKeywords, setMetaKeywords] = useState(initialData?.meta_keywords || '');
   const [status, setStatus] = useState(initialData?.status || 'draft');
+  const [isPreview, setIsPreview] = useState(false);
+  
   const [isAiLoading, setIsAiLoading] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
   const router = useRouter();
   const supabase = createClient();
 
-  const editor = useEditor({
-    extensions: [
-      StarterKit,
-      Link.configure({ openOnClick: false }),
-      Image.configure({ inline: true }),
-    ],
-    content: initialData?.content || '',
-    immediatelyRender: false,
-    editorProps: {
-      attributes: {
-        class: 'prose prose-lg max-w-none min-h-[400px] focus:outline-none p-4 border border-gray-200 rounded-lg bg-white',
-      },
-    },
-  });
+  const handleImageUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    if (!file.type.startsWith('image/')) {
+      alert('Please select an image file');
+      return;
+    }
+
+    if (file.size > 5 * 1024 * 1024) {
+      alert('Image size should be less than 5MB');
+      return;
+    }
+
+    setIsUploading(true);
+    try {
+      const fileExt = file.name.split('.').pop();
+      const fileName = `${Date.now()}-${Math.random().toString(36).substring(7)}.${fileExt}`;
+      const filePath = `blog-images/${fileName}`;
+
+      const { error: uploadError } = await supabase.storage
+        .from('blog-images')
+        .upload(filePath, file);
+
+      if (uploadError) throw uploadError;
+
+      const { data: { publicUrl } } = supabase.storage
+        .from('blog-images')
+        .getPublicUrl(filePath);
+
+      setFeaturedImage(publicUrl);
+    } catch (error) {
+      console.error('Upload error:', error);
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+      if (errorMessage.includes('Bucket not found')) {
+        alert('Storage bucket not configured. Please create a "blog-images" bucket in Supabase Storage with public access enabled.');
+      } else {
+        alert('Image upload failed: ' + errorMessage);
+      }
+    } finally {
+      setIsUploading(false);
+    }
+  };
+
+  const insertMarkdown = (prefix: string, suffix: string = '') => {
+    const textarea = document.getElementById('markdown-editor') as HTMLTextAreaElement;
+    if (!textarea) return;
+
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    const text = textarea.value;
+    const before = text.substring(0, start);
+    const selection = text.substring(start, end);
+    const after = text.substring(end);
+
+    const newText = before + prefix + selection + suffix + after;
+    setMarkdown(newText);
+    
+    // Reset focus and selection
+    setTimeout(() => {
+      textarea.focus();
+      textarea.setSelectionRange(start + prefix.length, end + prefix.length);
+    }, 0);
+  };
 
   const handleAiGenerate = async () => {
-    if (!editor?.getText() || !title) {
+    if (!markdown || !title) {
       alert('Please add a title and some content first.');
       return;
     }
@@ -56,7 +108,7 @@ export default function BlogEditor({ initialData, isEditing = false }: BlogEdito
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           title,
-          content: editor.getText(),
+          content: markdown,
         }),
       });
 
@@ -75,7 +127,7 @@ export default function BlogEditor({ initialData, isEditing = false }: BlogEdito
   };
 
   const handleSave = async (publish: boolean = false) => {
-    if (!title || !slug || !editor?.getHTML()) {
+    if (!title || !slug || !markdown) {
       alert('Title, slug, and content are required.');
       return;
     }
@@ -84,7 +136,7 @@ export default function BlogEditor({ initialData, isEditing = false }: BlogEdito
     const blogData = {
       title,
       slug,
-      content: editor.getHTML(),
+      content: markdown,
       featured_image: featuredImage,
       meta_title: metaTitle,
       meta_description: metaDesc,
@@ -115,17 +167,34 @@ export default function BlogEditor({ initialData, isEditing = false }: BlogEdito
   };
 
   return (
-    <div className="max-w-5xl mx-auto p-8">
-      <div className="flex items-center gap-4 mb-8">
-        <button onClick={() => router.back()} className="p-2 hover:bg-gray-100 rounded-full transition-colors">
-          <ArrowLeft size={24} />
-        </button>
-        <h1 className="text-2xl font-bold">{isEditing ? 'Edit Blog Post' : 'Create New Blog Post'}</h1>
+    <div className="max-w-7xl mx-auto p-4 md:p-8">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+        <div className="flex items-center gap-4">
+          <button onClick={() => router.back()} className="p-2 hover:bg-gray-100 rounded-full transition-colors">
+            <ArrowLeft size={24} />
+          </button>
+          <h1 className="text-2xl font-bold">{isEditing ? 'Edit Blog Post' : 'Create New Blog Post'}</h1>
+        </div>
+        
+        <div className="flex items-center gap-2 bg-gray-100 p-1 rounded-lg self-start">
+          <button 
+            onClick={() => setIsPreview(false)}
+            className={`px-4 py-1.5 rounded-md text-sm font-medium transition-all ${!isPreview ? 'bg-white shadow-sm text-blue-600' : 'text-gray-600 hover:text-gray-900'}`}
+          >
+            Write
+          </button>
+          <button 
+            onClick={() => setIsPreview(true)}
+            className={`px-4 py-1.5 rounded-md text-sm font-medium transition-all ${isPreview ? 'bg-white shadow-sm text-blue-600' : 'text-gray-600 hover:text-gray-900'}`}
+          >
+            Preview
+          </button>
+        </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Main Content Area */}
-        <div className="lg:col-span-2 space-y-6">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+        {/* Main Editor Area */}
+        <div className="lg:col-span-3 space-y-6">
           <div className="space-y-2">
             <label className="text-sm font-semibold text-gray-700">Blog Title</label>
             <input
@@ -138,8 +207,38 @@ export default function BlogEditor({ initialData, isEditing = false }: BlogEdito
           </div>
 
           <div className="space-y-2">
-            <label className="text-sm font-semibold text-gray-700">Content</label>
-            <EditorContent editor={editor} />
+            <div className="flex items-center justify-between">
+              <label className="text-sm font-semibold text-gray-700">Content (Markdown)</label>
+              {!isPreview && (
+                <div className="flex items-center gap-1 bg-white border border-gray-200 rounded-lg p-1">
+                  <button onClick={() => insertMarkdown('**', '**')} className="p-1.5 hover:bg-gray-50 rounded" title="Bold"><Bold size={16} /></button>
+                  <button onClick={() => insertMarkdown('_', '_')} className="p-1.5 hover:bg-gray-50 rounded" title="Italic"><Italic size={16} /></button>
+                  <button onClick={() => insertMarkdown('\n# ')} className="p-1.5 hover:bg-gray-50 rounded text-xs font-bold" title="H1">H1</button>
+                  <button onClick={() => insertMarkdown('\n## ')} className="p-1.5 hover:bg-gray-50 rounded text-xs font-bold" title="H2">H2</button>
+                  <button onClick={() => insertMarkdown('\n- ')} className="p-1.5 hover:bg-gray-50 rounded" title="Bullet List"><List size={16} /></button>
+                  <button onClick={() => insertMarkdown('\n1. ')} className="p-1.5 hover:bg-gray-50 rounded" title="Numbered List"><ListOrdered size={16} /></button>
+                  <button onClick={() => insertMarkdown('\n> ')} className="p-1.5 hover:bg-gray-50 rounded" title="Quote"><Quote size={16} /></button>
+                  <button onClick={() => insertMarkdown('`', '`')} className="p-1.5 hover:bg-gray-50 rounded" title="Code"><Code size={16} /></button>
+                  <button onClick={() => insertMarkdown('[', '](url)')} className="p-1.5 hover:bg-gray-50 rounded" title="Link"><LinkIcon size={16} /></button>
+                </div>
+              )}
+            </div>
+            
+            <div className="min-h-[500px] border border-gray-200 rounded-xl overflow-hidden bg-white">
+              {isPreview ? (
+                <div className="p-8 prose prose-blue max-w-none prose-headings:font-bold prose-img:rounded-xl">
+                  <ReactMarkdown remarkPlugins={[remarkGfm]}>{markdown}</ReactMarkdown>
+                </div>
+              ) : (
+                <textarea
+                  id="markdown-editor"
+                  value={markdown}
+                  onChange={(e) => setMarkdown(e.target.value)}
+                  placeholder="Start writing your masterpiece in markdown..."
+                  className="w-full h-[500px] p-6 focus:outline-none resize-none font-mono text-sm leading-relaxed"
+                />
+              )}
+            </div>
           </div>
 
           {/* SEO Section */}
@@ -221,14 +320,48 @@ export default function BlogEditor({ initialData, isEditing = false }: BlogEdito
               </div>
 
               <div>
-                <label className="text-sm font-medium text-gray-600">Featured Image URL</label>
-                <input
-                  type="text"
-                  value={featuredImage}
-                  onChange={(e) => setFeaturedImage(e.target.value)}
-                  className="w-full px-4 py-2 border border-gray-200 rounded-lg mt-1 text-sm"
-                  placeholder="https://..."
-                />
+                <label className="text-sm font-medium text-gray-600">Featured Image</label>
+                
+                {featuredImage ? (
+                  <div className="mt-2 relative">
+                    <img 
+                      src={featuredImage} 
+                      alt="Featured preview" 
+                      className="w-full h-48 object-cover rounded-lg border border-gray-200"
+                    />
+                    <button
+                      onClick={() => setFeaturedImage('')}
+                      className="absolute top-2 right-2 p-1.5 bg-red-500 text-white rounded-full hover:bg-red-600 transition-colors"
+                    >
+                      <X size={16} />
+                    </button>
+                  </div>
+                ) : (
+                  <label className="mt-2 flex flex-col items-center justify-center w-full h-48 border-2 border-dashed border-gray-300 rounded-lg cursor-pointer hover:border-blue-500 hover:bg-blue-50 transition-all">
+                    <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                      {isUploading ? (
+                        <div className="flex flex-col items-center gap-2">
+                          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+                          <p className="text-sm text-gray-500">Uploading...</p>
+                        </div>
+                      ) : (
+                        <>
+                          <Upload className="w-10 h-10 mb-3 text-gray-400" />
+                          <p className="mb-2 text-sm text-gray-500">
+                            <span className="font-semibold">Click to upload</span>
+                          </p>
+                        </>
+                      )}
+                    </div>
+                    <input
+                      type="file"
+                      className="hidden"
+                      accept="image/*"
+                      onChange={handleImageUpload}
+                      disabled={isUploading}
+                    />
+                  </label>
+                )}
               </div>
 
               <div className="pt-4 space-y-3">

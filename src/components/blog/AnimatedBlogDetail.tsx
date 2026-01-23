@@ -3,6 +3,8 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { format } from 'date-fns';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 interface Blog {
   title: string;
@@ -89,10 +91,11 @@ export default function AnimatedBlogDetail({ blog }: { blog: Blog }) {
         className="container mx-auto px-5 lg:px-20"
       >
         <div className="max-w-3xl mx-auto">
-          <div 
-            className="prose prose-lg prose-blue max-w-none text-[#4B5563] leading-relaxed"
-            dangerouslySetInnerHTML={{ __html: blog.content }}
-          />
+          <div className="prose prose-lg prose-blue max-w-none text-[#4B5563] leading-relaxed prose-headings:text-[#1E293B] prose-headings:font-bold prose-img:rounded-2xl prose-a:text-blue-600">
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+              {blog.content}
+            </ReactMarkdown>
+          </div>
           
           {/* Tags/Categories Section */}
           <div className="mt-16 pt-8 border-t border-gray-100">
