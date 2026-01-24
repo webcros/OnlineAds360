@@ -5,7 +5,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { createClient } from '@/utils/supabase/client';
 import { LayoutDashboard, FileText, Settings, LogOut, PlusCircle, MessageSquare, Users } from 'lucide-react';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function AdminLayout({
@@ -15,7 +15,7 @@ export default function AdminLayout({
 }) {
   const pathname = usePathname();
   const router = useRouter();
-  const supabase = createClient();
+  const supabase = useMemo(() => createClient(), []);
   const [isAuthorized, setIsAuthorized] = useState<boolean | null>(null);
 
   useEffect(() => {
@@ -98,17 +98,7 @@ export default function AdminLayout({
 
       {/* Main Content */}
       <main className="flex-1 overflow-auto p-8">
-        <AnimatePresence mode="wait" initial={false}>
-          <motion.div
-            key={pathname}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25, ease: 'easeInOut' }}
-          >
-            {children}
-          </motion.div>
-        </AnimatePresence>
+        {children}
       </main>
     </div>
   );

@@ -41,7 +41,7 @@ export default function AboutHistory() {
     {
       year: '2009',
       title: 'The Inception',
-      text: 'Founded by Joe and JB Kellogg with a vision to help small businesses compete in the digital age through innovative marketing strategies.',
+      text: 'Founded by Santosh, Rajesh and Ehsan with a vision to help small businesses compete in the digital age through innovative marketing strategies.',
     },
     {
       year: '2012',

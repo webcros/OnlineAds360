@@ -64,6 +64,7 @@ export default function ContactOptions() {
 
         {/* Support Card */}
         <motion.div 
+          id="support"
           variants={itemVariants}
           className="bg-white border-2 border-[#E5E7EB] rounded-2xl p-8 md:p-10 h-[332px] flex flex-col relative transition-all hover:shadow-lg hover:border-green-200 group"
         >
@@ -78,12 +79,12 @@ export default function ContactOptions() {
           </p>
           <div className="mt-auto">
             <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-              <Link
-                href="/contact"
+              <a
+                href="tel:+13472519545"
                 className="block w-full h-[48px] border border-[#E5E7EB] text-black font-semibold text-[16px] leading-[48px] rounded-lg text-center hover:bg-gray-50 transition-all"
               >
                 Contact Support
-              </Link>
+              </a>
             </motion.div>
           </div>
         </motion.div>

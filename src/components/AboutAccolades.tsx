@@ -29,7 +29,7 @@ export default function AboutAccolades() {
   const accolades = [
     {
       title: 'Fastest Growing Company',
-      description: 'Eight years straight! A feat fewer than 1 in 2,000,000 companies achieve.',
+      description: 'Recognized for eight consecutive years of rapid growth and excellence.',
       image: '/images/About Page/accolade1.png',
     },
     {
@@ -40,19 +40,12 @@ export default function AboutAccolades() {
     {
       title: 'Google Partner',
       description: 'As a Google partner we strive to deliver exceptional results through certified expertise.',
-      link: 'What does it mean to be a partner?',
       image: '/images/About Page/accolade3.png',
     },
     {
       title: 'Meta Business Partner',
       description: 'As a Meta business partner we strive to build campaigns that drive results.',
-      link: 'Watch a 57-second video about what this means.',
       image: '/images/About Page/accolade4.png',
-    },
-    {
-      title: 'Top Family Owned Colorado Company',
-      description: 'More than seven years in a row, recognized for our commitment to local community and family values.',
-      image: '/images/About Page/accolade5.png',
     },
     {
       title: 'Bing Advertising Partner',
@@ -102,11 +95,6 @@ export default function AboutAccolades() {
                 <p className="text-[16px] text-[#717171] leading-relaxed mb-2">
                   {item.description}
                 </p>
-                {item.link && (
-                  <button className="text-[#0052CC] font-medium text-sm hover:underline">
-                    {item.link}
-                  </button>
-                )}
               </div>
             </motion.div>
           ))}

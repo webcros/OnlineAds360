@@ -271,31 +271,17 @@ export default function ContactFormSection() {
               Direct Contact
             </h3>
             <div className="mt-6 space-y-6">
-              {/* Sales Team */}
+              {/* Contact Number */}
               <div className="flex items-start gap-4">
                 <div className="mt-1">
                   <Phone className="w-4 h-4 text-[#2563EB]" fill="currentColor" />
                 </div>
                 <div>
                   <p className="text-[14px] text-[#4B5563] leading-[20px] tracking-[-0.5px]">
-                    Sales Team
+                    Contact
                   </p>
                   <p className="mt-0.5 text-[16px] font-medium text-[#111827] leading-[16px] tracking-[-0.5px]">
-                    (800) 555-1234
-                  </p>
-                </div>
-              </div>
-              {/* Client Services */}
-              <div className="flex items-start gap-4">
-                <div className="mt-1">
-                  <Headset className="w-4 h-4 text-[#16A34A]" fill="currentColor" />
-                </div>
-                <div>
-                  <p className="text-[14px] text-[#4B5563] leading-[20px] tracking-[-0.5px]">
-                    Client Services
-                  </p>
-                  <p className="mt-0.5 text-[16px] font-medium text-[#111827] leading-[16px] tracking-[-0.5px]">
-                    (800) 555-5678
+                    +1 (347) 251-9545
                   </p>
                 </div>
               </div>
@@ -310,26 +296,10 @@ export default function ContactFormSection() {
             <div className="mt-6 space-y-4">
               <div className="flex justify-between items-center">
                 <p className="text-[16px] text-[#4B5563] leading-[24px] tracking-[-0.5px]">
-                  Monday - Friday
+                  Every Day
                 </p>
                 <p className="text-[16px] font-medium text-[#111827] leading-[24px] tracking-[-0.5px]">
-                  8:00 AM - 8:00 PM EST
-                </p>
-              </div>
-              <div className="flex justify-between items-center">
-                <p className="text-[16px] text-[#4B5563] leading-[24px] tracking-[-0.5px]">
-                  Saturday
-                </p>
-                <p className="text-[16px] font-medium text-[#111827] leading-[24px] tracking-[-0.5px]">
-                  9:00 AM - 5:00 PM EST
-                </p>
-              </div>
-              <div className="flex justify-between items-center">
-                <p className="text-[16px] text-[#4B5563] leading-[24px] tracking-[-0.5px]">
-                  Sunday
-                </p>
-                <p className="text-[16px] font-medium text-[#111827] leading-[24px] tracking-[-0.5px]">
-                  Closed
+                  9:00 AM - 9:00 PM EST
                 </p>
               </div>
             </div>
@@ -342,20 +312,16 @@ export default function ContactFormSection() {
             </h3>
             <div className="mt-6 space-y-1">
               <p className="text-[16px] font-medium text-[#111827] leading-[24px] tracking-[-0.5px]">
-                MarketPro Headquarters
+                21 Freedom Place, Unit A
               </p>
               <p className="text-[16px] text-[#4B5563] leading-[24px] tracking-[-0.5px]">
-                123 Business District Drive
-              </p>
-              <p className="text-[16px] text-[#4B5563] leading-[24px] tracking-[-0.5px]">
-                Suite 400
-              </p>
-              <p className="text-[16px] text-[#4B5563] leading-[24px] tracking-[-0.5px]">
-                Austin, TX 78701
+                Jersey City, NJ, 07305
               </p>
               <div className="pt-2">
                 <a
-                  href="#"
+                  href="https://www.google.com/maps/search/?api=1&query=21+Freedom+Place,+Unit+A,+Jersey+City,+NJ+07305"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-[14px] font-medium text-[#2563EB] hover:underline"
                 >
                   <MapPin className="w-3.5 h-3.5" fill="currentColor" />

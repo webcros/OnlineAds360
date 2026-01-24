@@ -1,18 +1,30 @@
 'use client';
 
-import { ChevronDown, Phone, Menu, X } from 'lucide-react';
+import { ChevronDown, Phone, Menu, X, MessageCircle } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isCallModalOpen, setIsCallModalOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const { scrollY } = useScroll();
   const lastScrollY = useRef(0);
   const pathname = usePathname();
+
+  useEffect(() => {
+    if (isCallModalOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isCallModalOpen]);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const direction = latest > lastScrollY.current ? "down" : "up";
@@ -31,6 +43,13 @@ export default function Header() {
     { name: 'Blog', href: '/blog' },
     { name: 'Contact', href: '/contact' },
   ];
+
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (pathname === href) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    setIsMenuOpen(false);
+  };
 
   return (
     <motion.header 
@@ -75,6 +94,7 @@ export default function Header() {
                 >
                   <Link 
                     href={link.href} 
+                    onClick={(e) => handleLinkClick(e, link.href)}
                     className={`text-[16px] font-medium transition-colors ${
                       isActive ? 'text-[#2563EB]' : 'text-[#1F2937] hover:text-[#2563EB]'
                     }`}
@@ -105,12 +125,16 @@ export default function Header() {
             transition={{ duration: 0.5 }}
             className="flex items-center gap-2 md:gap-4 z-50"
           >
-            <a href="tel:+13472519545" className="hidden sm:flex items-center gap-2 text-[#2563EB] font-medium text-[14px] sm:text-[16px] hover:text-[#1d4ed8] transition-colors">
+            <button 
+              onClick={() => setIsCallModalOpen(true)}
+              className="hidden sm:flex items-center gap-2 text-[#2563EB] font-medium text-[14px] sm:text-[16px] hover:text-[#1d4ed8] transition-colors"
+            >
               <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
               <span className="hidden xl:inline">Call Us</span>
-            </a>
+            </button>
             <Link
               href="/plans-and-pricing"
+              onClick={(e) => handleLinkClick(e, '/plans-and-pricing')}
               className="hidden sm:block px-4 py-2 sm:px-6 sm:py-3 bg-[#2563EB] text-white rounded-lg font-semibold text-[14px] sm:text-[16px] hover:bg-[#1d4ed8] transition-colors shadow-sm"
             >
               Plans & Pricing
@@ -148,7 +172,7 @@ export default function Header() {
                   <Link
                     href={link.href}
                     className="text-[#1F2937] font-bold text-[20px] hover:text-[#2563EB] transition-colors"
-                    onClick={() => setIsMenuOpen(false)}
+                    onClick={(e) => handleLinkClick(e, link.href)}
                   >
                     {link.name}
                   </Link>
@@ -160,10 +184,16 @@ export default function Header() {
                 transition={{ delay: 0.3 }}
                 className="pt-6 border-t border-gray-100 flex flex-col gap-4"
               >
-                <a href="tel:+13472519545" className="flex items-center justify-center gap-2 text-[#2563EB] font-bold text-[18px] py-4 border-2 border-[#2563EB] rounded-lg">
+                <button 
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                    setIsCallModalOpen(true);
+                  }}
+                  className="flex items-center justify-center gap-2 text-[#2563EB] font-bold text-[18px] py-4 border-2 border-[#2563EB] rounded-lg"
+                >
                   <Phone className="w-5 h-5" />
                   Call Us
-                </a>
+                </button>
                 <Link
                   href="/plans-and-pricing"
                   className="bg-[#2563EB] text-white font-bold text-[18px] py-4 rounded-lg shadow-lg text-center"
@@ -176,6 +206,75 @@ export default function Header() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Call Us Modal */}
+      <AnimatePresence>
+        {isCallModalOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsCallModalOpen(false)}
+              className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[60]"
+            />
+            <div className="fixed inset-0 flex items-center justify-center z-[70] p-4 pointer-events-none">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                className="bg-white rounded-3xl p-8 w-full max-w-md shadow-2xl relative pointer-events-auto"
+              >
+                <button 
+                  onClick={() => setIsCallModalOpen(false)}
+                  className="absolute top-6 right-6 p-2 hover:bg-gray-100 rounded-full transition-colors"
+                >
+                  <X className="w-5 h-5 text-gray-500" />
+                </button>
+
+                <div className="text-center mb-8">
+                  <div className="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                    <Phone className="w-8 h-8 text-[#2563EB]" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-gray-900">How would you like to connect?</h3>
+                  <p className="text-gray-500 mt-2">Choose your preferred way to reach us</p>
+                </div>
+
+                <div className="space-y-4">
+                  <a 
+                    href="tel:+13472519545"
+                    className="flex items-center gap-4 p-5 rounded-2xl border-2 border-gray-100 hover:border-[#2563EB] hover:bg-blue-50/50 transition-all group"
+                  >
+                    <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center group-hover:bg-[#2563EB] transition-colors">
+                      <Phone className="w-6 h-6 text-[#2563EB] group-hover:text-white" />
+                    </div>
+                    <div className="text-left">
+                      <p className="font-bold text-gray-900">Phone Call</p>
+                      <p className="text-sm text-gray-500">+1 (347) 251-9545</p>
+                    </div>
+                  </a>
+
+                  <a 
+                    href="https://wa.me/13472519545"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-4 p-5 rounded-2xl border-2 border-gray-100 hover:border-[#22C55E] hover:bg-green-50/50 transition-all group"
+                  >
+                    <div className="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center group-hover:bg-[#22C55E] transition-colors">
+                      <MessageCircle className="w-6 h-6 text-[#22C55E] group-hover:text-white" />
+                    </div>
+                    <div className="text-left">
+                      <p className="font-bold text-gray-900">WhatsApp</p>
+                      <p className="text-sm text-gray-500">Message us on WhatsApp</p>
+                    </div>
+                  </a>
+                </div>
+              </motion.div>
+            </div>
+          </>
+        )}
+      </AnimatePresence>
+
     </motion.header>
   );
 }

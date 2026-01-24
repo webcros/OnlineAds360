@@ -47,7 +47,7 @@ export default function ServicesOverview() {
           >
             <div className="relative w-full h-[400px]">
               <Image
-                src="/images/Service Page/full_service.png"
+                src="/images/Your Marketing Team.svg"
                 alt="Full Service"
                 fill
                 className="object-contain p-4 transition-transform duration-700 group-hover:scale-105"
@@ -76,7 +76,7 @@ export default function ServicesOverview() {
           >
             <div className="flex-1 relative bg-gradient-to-br from-[#FAF5FF] to-[#EFF6FF] overflow-hidden">
               <Image
-                src="/images/Service Page/ads_service.png"
+                src="/images/DigitalAds.svg"
                 alt="Digital Ads"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -99,7 +99,7 @@ export default function ServicesOverview() {
           >
             <div className="flex-1 relative bg-gradient-to-br from-[#F0FDF4] to-[#ECFDF5] overflow-hidden">
               <Image
-                src="/images/Service Page/seo_service.png"
+                src="/images/SEO&Content.svg"
                 alt="SEO & Content"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -122,7 +122,7 @@ export default function ServicesOverview() {
           >
             <div className="flex-1 relative bg-gradient-to-br from-[#FDF2F8] to-[#FFF1F2] overflow-hidden">
               <Image
-                src="/images/Service Page/social_service.png"
+                src="/images/SocialMedia.svg"
                 alt="Social Media"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -145,7 +145,7 @@ export default function ServicesOverview() {
           >
             <div className="flex-1 relative bg-gradient-to-br from-[#EFF6FF] to-[#EEF2FF] overflow-hidden">
               <Image
-                src="/images/Service Page/website_service.png"
+                src="/images/Websites & Funnels.svg"
                 alt="Websites & Funnels"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -168,7 +168,7 @@ export default function ServicesOverview() {
           >
             <div className="flex-1 relative overflow-hidden bg-gray-50">
               <Image
-                src="/images/Service Page/branding_service.png"
+                src="/images/Branding & Creative.svg"
                 alt="Branding & Creative"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -191,7 +191,7 @@ export default function ServicesOverview() {
           >
             <div className="flex-1 relative bg-gradient-to-br from-[#ECFEFF] to-[#EFF6FF] overflow-hidden">
               <Image
-                src="/images/Service Page/email_service.png"
+                src="/images/Email & Automation.svg"
                 alt="Email & Automation"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
