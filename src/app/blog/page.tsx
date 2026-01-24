@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { createClient } from '@/utils/supabase/server';
+import { createStaticClient } from '@/utils/supabase/server';
 import Link from 'next/link';
 import Image from 'next/image';
 import { format } from 'date-fns';
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 };
 
 export default async function BlogListingPage() {
-  const supabase = await createClient();
+  const supabase = createStaticClient();
 
   const { data: blogs, error } = await supabase
     .from('blogs')

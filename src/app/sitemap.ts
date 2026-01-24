@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next';
-import { createClient } from '@/utils/supabase/server';
+import { createStaticClient } from '@/utils/supabase/server';
 
 // Revalidate sitemap every hour to ensure new blogs are included promptly
 export const revalidate = 3600;
@@ -8,7 +8,7 @@ export const revalidate = 3600;
 export const dynamic = 'force-dynamic';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const supabase = await createClient();
+  const supabase = createStaticClient();
   const baseUrl = 'https://onlineads360.com';
 
   // Fetch all published blogs with error handling

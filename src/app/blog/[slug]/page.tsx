@@ -1,4 +1,4 @@
-import { createClient } from '@/utils/supabase/server';
+import { createClient, createStaticClient } from '@/utils/supabase/server';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { format } from 'date-fns';
@@ -11,7 +11,7 @@ export const revalidate = 3600;
 // Generate static params for all published blogs at build time
 // New blogs will be automatically generated on first request (ISR)
 export async function generateStaticParams() {
-  const supabase = await createClient();
+  const supabase = createStaticClient();
   
   const { data: blogs, error } = await supabase
     .from('blogs')
@@ -34,7 +34,7 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const supabase = await createClient();
+  const supabase = createStaticClient();
   const { data: blog } = await supabase
     .from('blogs')
     .select('*')
@@ -65,7 +65,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function BlogDetailPage({ params }: Props) {
   const { slug } = await params;
-  const supabase = await createClient();
+  const supabase = createStaticClient();
   
   const { data: blog, error } = await supabase
     .from('blogs')
