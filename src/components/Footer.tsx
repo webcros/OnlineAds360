@@ -112,7 +112,7 @@ export default function Footer() {
             © 2024 OnlineAds360. All rights reserved.
           </p>
           <p className="text-[#9CA3AF] font-bold text-[16px] leading-[24px] tracking-[-0.5px] text-center md:text-right">
-            Designed & Developed By Webcros
+            Designed & Developed By <Link href="https://www.webcros.in/" target="_blank" className="hover:text-white transition-colors">Webcros</Link>
           </p>
         </motion.div>
       </div>
