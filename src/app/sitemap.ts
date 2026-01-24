@@ -9,7 +9,7 @@ export const dynamic = 'force-dynamic';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const supabase = createStaticClient();
-  const baseUrl = 'https://onlineads360.com';
+  const baseUrl = 'https://www.onlineads360.com';
 
   // Fetch all published blogs with error handling
   const { data: blogs, error } = await supabase

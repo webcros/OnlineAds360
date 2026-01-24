@@ -11,7 +11,7 @@ const inter = Inter({
 
 const siteConfig = {
   name: "OnlineAds360",
-  url: "https://onlineads360.com",
+  url: "https://www.onlineads360.com",
   description: "Get everything you need to manage and grow your business. Transform your business operations with our all-in-one marketing platform.",
   ogImage: "/images/og-image.png",
 };
