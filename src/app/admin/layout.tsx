@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { createClient } from '@/utils/supabase/client';
-import { LayoutDashboard, FileText, Settings, LogOut, PlusCircle, MessageSquare, Users } from 'lucide-react';
+import { LayoutDashboard, FileText, LogOut, PlusCircle, MessageSquare, Users } from 'lucide-react';
 
 import { useEffect, useState, useMemo } from 'react';
 
@@ -55,7 +55,6 @@ export default function AdminLayout({
     { name: 'Messages', href: '/admin/messages', icon: MessageSquare },
     { name: 'All Blogs', href: '/admin/blog', icon: FileText },
     { name: 'New Blog', href: '/admin/blog/new', icon: PlusCircle },
-    { name: 'Settings', href: '/admin/settings', icon: Settings },
   ];
 
   return (
