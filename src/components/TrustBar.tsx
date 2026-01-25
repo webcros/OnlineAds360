@@ -46,7 +46,7 @@ export default function TrustBar() {
               transition={{ delay: 0.5, duration: 0.6 }}
               className="text-white text-sm md:text-base"
             >
-              Trusted by <span className="font-semibold">15,000+</span> businesses worldwide to manage and grow their operations
+              Trusted by <span className="font-semibold">2,000+</span> businesses worldwide to manage and grow their operations
             </motion.p>
           </div>
 

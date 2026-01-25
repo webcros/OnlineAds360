@@ -2,7 +2,6 @@ import { Metadata } from 'next';
 import ContactHero from "@/components/ContactHero";
 import ContactOptions from "@/components/ContactOptions";
 import ContactFormSection from "@/components/ContactFormSection";
-import MoreWaysToHelp from "@/components/MoreWaysToHelp";
 import CTASection from "@/components/CTASection";
 
 export const metadata: Metadata = {
@@ -30,7 +29,6 @@ export default function ContactPage() {
       <ContactHero />
       <ContactOptions />
       <ContactFormSection />
-      <MoreWaysToHelp />
       <CTASection />
     </main>
   );

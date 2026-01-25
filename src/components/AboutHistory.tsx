@@ -61,7 +61,7 @@ export default function AboutHistory() {
     {
       year: '2022',
       title: 'Next-Gen Features',
-      text: 'Added integrated e-commerce and mobile app management features, empowering 20,000+ businesses to scale globally.',
+      text: 'Added integrated e-commerce and mobile app management features, empowering 2,000+ businesses to scale globally.',
     },
     {
       year: '2024',

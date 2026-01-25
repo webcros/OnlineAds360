@@ -74,7 +74,7 @@ export default function ServiceHero() {
             >
               <div className="w-2.5 h-2.5 bg-[#22C55E] rounded-full animate-pulse" />
               <span className="font-semibold text-[14px] text-[#1E293B] whitespace-nowrap">
-                15,000+ businesses
+                2,000+ businesses
               </span>
             </motion.div>
 
@@ -103,7 +103,7 @@ export default function ServiceHero() {
           className="mt-12 md:mt-16 lg:mt-24 pt-8 md:pt-12 border-t border-gray-100"
         >
           <p className="text-[14px] font-medium text-center text-[#6B7280] mb-8 tracking-wide uppercase">
-            Trusted by 15,000+ small businesses worldwide
+            Trusted by 2,000+ small businesses worldwide
           </p>
           <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 lg:gap-16 opacity-40 grayscale">
             {[...Array(6)].map((_, i) => (

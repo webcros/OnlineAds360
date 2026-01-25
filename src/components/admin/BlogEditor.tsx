@@ -119,7 +119,10 @@ export default function BlogEditor({ initialData, isEditing = false }: BlogEdito
       setMetaTitle(data.meta_title);
       setMetaDesc(data.meta_description);
       setMetaKeywords(data.meta_keywords);
-      if (!slug) setSlug(data.slug);
+      if (!slug) {
+        const uniqueSuffix = Math.random().toString(36).substring(2, 7);
+        setSlug(`${data.slug}-${uniqueSuffix}`);
+      }
     } catch (error) {
       alert('AI Generation failed: ' + (error instanceof Error ? error.message : 'Unknown error'));
     } finally {
