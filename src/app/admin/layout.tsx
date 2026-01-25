@@ -6,7 +6,6 @@ import { createClient } from '@/utils/supabase/client';
 import { LayoutDashboard, FileText, Settings, LogOut, PlusCircle, MessageSquare, Users } from 'lucide-react';
 
 import { useEffect, useState, useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 
 export default function AdminLayout({
   children,
@@ -31,7 +30,7 @@ export default function AdminLayout({
       }
     };
     checkAuth();
-  }, [pathname, router, supabase.auth]);
+  }, [router, supabase.auth]);
 
   if (pathname === '/admin/login') return children;
 
@@ -74,7 +73,7 @@ export default function AdminLayout({
             <Link
               key={item.name}
               href={item.href}
-              className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${pathname === item.href
+              className={`flex items-center gap-3 px-4 py-3 rounded-lg ${pathname === item.href
                   ? 'bg-blue-50 text-blue-600'
                   : 'text-gray-600 hover:bg-gray-50'
                 }`}
@@ -88,7 +87,7 @@ export default function AdminLayout({
         <div className="p-4 border-t border-gray-200">
           <button
             onClick={handleLogout}
-            className="flex items-center gap-3 px-4 py-3 w-full rounded-lg text-red-600 hover:bg-red-50 transition-colors"
+            className="flex items-center gap-3 px-4 py-3 w-full rounded-lg text-red-600 hover:bg-red-50"
           >
             <LogOut size={20} />
             <span className="font-medium">Sign Out</span>

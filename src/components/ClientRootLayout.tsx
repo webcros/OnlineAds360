@@ -7,6 +7,17 @@ import Footer from './Footer';
 
 export default function ClientRootLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const isAdmin = pathname?.startsWith('/admin');
+
+  if (isAdmin) {
+    return (
+      <div className="flex flex-col min-h-screen">
+        <main className="flex-grow">
+          {children}
+        </main>
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col min-h-screen">

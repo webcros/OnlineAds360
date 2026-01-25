@@ -5,6 +5,8 @@ import Image from 'next/image';
 import { format } from 'date-fns';
 import AnimatedBlogGrid from '@/components/blog/AnimatedBlogGrid';
 
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: 'Blog',
   description: 'Read the latest marketing tips, trends, and news from OnlineAds360. Expert insights to help you grow your business.',

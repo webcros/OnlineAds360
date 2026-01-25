@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Sparkles, Save, Globe, ArrowLeft, Upload, X, Bold, Italic, List, ListOrdered, Code, Quote, Link as LinkIcon } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { createClient } from '@/utils/supabase/client';
+import { revalidateBlogPaths } from '@/app/admin/blog/actions';
 import { BlogRow } from '@/types/blog';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -158,7 +159,9 @@ export default function BlogEditor({ initialData, isEditing = false }: BlogEdito
         const { error } = await supabase.from('blogs').insert([blogData]);
         if (error) throw error;
       }
-      router.push('/admin/dashboard');
+      
+      await revalidateBlogPaths(slug);
+      router.push('/admin/blog');
     } catch (error) {
       alert('Save failed: ' + (error instanceof Error ? error.message : 'Unknown error'));
     } finally {

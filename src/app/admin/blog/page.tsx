@@ -6,6 +6,7 @@ import { BlogRow } from '@/types/blog';
 import Link from 'next/link';
 import { Edit, Trash2, ExternalLink, Plus } from 'lucide-react';
 import { format } from 'date-fns';
+import { deleteBlogAction } from './actions';
 
 export default function AdminDashboard() {
   const [blogs, setBlogs] = useState<BlogRow[]>([]);
@@ -32,11 +33,11 @@ export default function AdminDashboard() {
   const handleDelete = async (id: string) => {
     if (!confirm('Are you sure you want to delete this blog?')) return;
 
-    const { error } = await supabase.from('blogs').delete().eq('id', id);
-    if (!error) {
+    try {
+      await deleteBlogAction(id);
       setBlogs(blogs.filter((blog) => blog.id !== id));
-    } else {
-      alert('Error deleting blog: ' + error.message);
+    } catch (error) {
+      alert('Error deleting blog: ' + (error instanceof Error ? error.message : 'Unknown error'));
     }
   };
 
