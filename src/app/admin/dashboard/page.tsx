@@ -46,13 +46,6 @@ export default function AdminDashboardStats() {
       href: '/admin/messages'
     },
     {
-      name: 'Site Views',
-      value: '2,450',
-      icon: TrendingUp,
-      color: 'bg-purple-500',
-      href: '#'
-    },
-    {
       name: 'New Leads',
       value: stats.messageCount, // Using messageCount as a proxy for leads
       icon: Users,
@@ -108,27 +101,6 @@ export default function AdminDashboardStats() {
               <MessageSquare size={24} />
               <span className="font-semibold text-sm">View Messages</span>
             </Link>
-          </div>
-        </div>
-
-        <div className="bg-white p-8 rounded-2xl border border-gray-100 shadow-sm">
-          <h2 className="text-lg font-bold text-gray-900 mb-6">System Status</h2>
-          <div className="space-y-4">
-            <div className="flex items-center justify-between">
-              <span className="text-sm text-gray-600">Database Connection</span>
-              <span className="flex items-center gap-2 text-xs font-bold text-green-600">
-                <div className="w-2 h-2 rounded-full bg-green-600 animate-pulse"></div>
-                Healthy
-              </span>
-            </div>
-            <div className="flex items-center justify-between">
-              <span className="text-sm text-gray-600">Storage Usage</span>
-              <span className="text-sm font-bold text-gray-900">12% used</span>
-            </div>
-            <div className="flex items-center justify-between">
-              <span className="text-sm text-gray-600">Last Blog Post</span>
-              <span className="text-sm font-bold text-gray-900">2 days ago</span>
-            </div>
           </div>
         </div>
       </div>
