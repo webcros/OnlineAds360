@@ -36,7 +36,7 @@ export default function MarketingTeam() {
           transition={{ delay: 0.4, duration: 0.6 }}
           className="text-[32px] md:text-[48px] leading-[40px] md:leading-[48px] font-black tracking-[-0.5px] text-[#111827] mb-8 max-w-[724px] mx-auto"
         >
-          Turbocharge your marketing
+          Turbocharge your marketing{' '}
           <span className="hidden md:inline"><br /></span>
           with your own Marketing Team
         </motion.h2>

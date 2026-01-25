@@ -1,20 +1,41 @@
-'use client';
+"use client";
 
-import { motion, AnimatePresence } from 'framer-motion';
-import { usePathname } from 'next/navigation';
-import Header from './Header';
-import Footer from './Footer';
+import { motion, AnimatePresence } from "framer-motion";
+import { usePathname } from "next/navigation";
+import { useEffect } from "react";
+import Header from "./Header";
+import Footer from "./Footer";
 
-export default function ClientRootLayout({ children }: { children: React.ReactNode }) {
+export default function ClientRootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const pathname = usePathname();
-  const isAdmin = pathname?.startsWith('/admin');
+  const isAdmin = pathname?.startsWith("/admin");
+
+  useEffect(() => {
+    // Disable browser's automatic scroll restoration
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!isAdmin) {
+      // Force scroll to top immediately
+      window.scrollTo(0, 0);
+
+      // Ensure it stays at top even if other effects try to scroll
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    }
+  }, [pathname, isAdmin]);
 
   if (isAdmin) {
     return (
       <div className="flex flex-col min-h-screen">
-        <main className="flex-grow">
-          {children}
-        </main>
+        <main className="flex-grow">{children}</main>
       </div>
     );
   }
@@ -29,7 +50,7 @@ export default function ClientRootLayout({ children }: { children: React.ReactNo
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.25, ease: 'easeInOut' }}
+            transition={{ duration: 0.25, ease: "easeInOut" }}
             className="flex-grow"
           >
             {children}

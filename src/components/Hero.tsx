@@ -33,9 +33,9 @@ export default function Hero() {
             transition={{ delay: 0.4, duration: 0.8 }}
             className="font-inter font-black text-[36px] md:text-[60px] leading-[45px] md:leading-[75px] tracking-[-0.5px] text-center text-[#374151] mb-6"
           >
-            Get everything you need to
+            Get everything you need to{' '}
             <span className="hidden md:inline"><br /></span>
-            manage and grow your
+            manage and grow your{' '}
             <span className="hidden md:inline"><br /></span>
             <span className="text-[#103AB9] ml-2 md:ml-0">business</span>
           </motion.h1>
