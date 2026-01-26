@@ -20,6 +20,7 @@ const nextConfig: NextConfig = {
         pathname: '/storage/v1/object/public/**',
       },
     ],
+    qualities: [60, 75, 85],
   },
 
   // Enable compression

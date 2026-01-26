@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { TrendingUp, Users } from "lucide-react";
+import Link from "next/link";
 
 export default function AboutHero() {
   return (
@@ -27,9 +28,9 @@ export default function AboutHero() {
               Grow
             </h1>
 
-            <button className="bg-blue-600 hover:bg-blue-700 text-white text-lg font-medium px-8 py-4 rounded-lg transition-all shadow-lg hover:shadow-blue-600/25">
+            <Link href="/plans-and-pricing" className="bg-blue-600 hover:bg-blue-700 text-white text-lg font-medium px-8 py-4 rounded-lg transition-all shadow-lg hover:shadow-blue-600/25 inline-block">
               Start Growing Today
-            </button>
+            </Link>
           </motion.div>
 
           {/* Right Column: Image & Floaters */}
