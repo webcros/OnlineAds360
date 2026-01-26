@@ -30,7 +30,7 @@ const itemVariants: Variants = {
 
 export default function Footer() {
   const pathname = usePathname();
-  const companyLinks = ["Service", "About", "Blog", "Careers"];
+  const companyLinks = ["Service", "About", "Blog"];
   const supportLinks = ["Help Center", "Contact Us"];
 
   const socialLinks = [
