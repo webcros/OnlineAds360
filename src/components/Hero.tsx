@@ -79,7 +79,7 @@ export default function Hero() {
           {/* Main Dashboard Image */}
           <div className="relative rounded-xl overflow-hidden flex items-center justify-center group aspect-[16/10]">
             <Image
-              src="/images/Group1.png"
+              src="/images/Group1.svg"
               alt="Dashboard Preview"
               fill
               priority
