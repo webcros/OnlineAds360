@@ -12,7 +12,7 @@ const digitalServices = [
       'Real-time performance reporting',
       'Continuous strategy refinement'
     ],
-    image: '/images/Your Marketing Team.svg'
+    image: '/images/Service Page/full_service.png'
   },
   {
     title: 'Digital Ads & PPC',
@@ -24,7 +24,7 @@ const digitalServices = [
       'Creative testing & optimization',
       'ROAS tracking & reporting'
     ],
-    image: '/images/DigitalAds.svg'
+    image: '/images/Service Page/ads_service.png'
   },
   {
     title: 'SEO & Content',
@@ -36,7 +36,7 @@ const digitalServices = [
       'Content creation & optimization',
       'Local SEO & GMB management'
     ],
-    image: '/images/SEO&Content.svg'
+    image: '/images/Service Page/seo_service.png'
   },
   {
     title: 'Social Media',
@@ -48,7 +48,7 @@ const digitalServices = [
       'Influencer partnerships',
       'Performance analytics'
     ],
-    image: '/images/SocialMedia.svg'
+    image: '/images/Service Page/social_service.png'
   },
   {
     title: 'Websites & Funnels',
@@ -60,7 +60,7 @@ const digitalServices = [
       'Conversion-focused UX/UI',
       'CMS integration & training'
     ],
-    image: '/images/Websites & Funnels.svg'
+    image: '/images/Service Page/website_service.png'
   },
   {
     title: 'Branding & Creative',
@@ -72,7 +72,7 @@ const digitalServices = [
       'Graphic design & assets',
       'Brand style guides'
     ],
-    image: '/images/Branding & Creative.svg'
+    image: '/images/Service Page/branding_service.png'
   },
   {
     title: 'Email & Automation',
@@ -84,7 +84,7 @@ const digitalServices = [
       'A/B testing & optimization',
       'CRM integration'
     ],
-    image: '/images/Email & Automation.svg'
+    image: '/images/Service Page/email_service.png'
   }
 ];
 
