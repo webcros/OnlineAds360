@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 
 export default function TrustBar() {
   return (
-    <section className="bg-[#1F2937] py-6 -mt-16 relative z-10">
+    <section className="bg-[#1F2937] py-6 -mt-28 relative z-10">
       <div className="max-w-[1280px] mx-auto px-5 lg:px-20">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
