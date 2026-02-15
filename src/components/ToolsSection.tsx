@@ -91,7 +91,7 @@ const FeatureCard = ({
           src={imageSrc}
           alt={category}
           fill
-          className="object-contain transition-transform duration-500 hover:scale-105"
+          className="object-cover transition-transform duration-500 hover:scale-105 rounded-2xl"
           sizes="(max-width: 768px) 100vw, 50vw"
           quality={60}
         />
