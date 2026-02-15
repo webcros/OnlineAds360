@@ -29,7 +29,7 @@ const itemVariants: Variants = {
 
 export default function ServicesOverview() {
   return (
-    <section id="services" className="py-16 bg-white overflow-hidden">
+    <section id="services" className="pt-8 pb-16 bg-white overflow-hidden">
       <div className="container mx-auto px-4 lg:px-0 max-w-[1344px]">
         {/* Mobile Layout (Stack) / Desktop Layout (Grid) */}
         <motion.div
